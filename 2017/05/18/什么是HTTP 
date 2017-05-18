@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ZZ:D</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="NPM的使用方法NPM 是随同 Node 一起安装的包管里工具。  允许用户从NPM服务器下载别人编写的第三方包到本地使用。 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。  1.模块初始化创建模块，package.json 文件是必不可少的。我们可以使用 NPM 生成 package.json 文件，生成的文件包">
+  <meta name="description" content="什么是HTTP ?HTTP 协议简介HTTP 是超文本传输协议 (Hyper Text Transfer Protocol)的缩写,用于 WWW 服务 HTTP的工作原理HTTP是一个面向事务的客户服务器协议.尽管 HTTP使用TCP 作为底层传输协议,但是HTTP 协议是无状态的,也就是说,每个事务都是独立的进行处理.在浏览器和服务器之间的请求和响应的交互，必须遵循 HTTP 规定的格式和规则。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZZ:D">
-<meta property="og:url" content="http://yoursite.com/2017/05/10/NPM的使用方法/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/05/18/什么是HTTP ">
 <meta property="og:site_name" content="ZZ:D">
-<meta property="og:description" content="NPM的使用方法NPM 是随同 Node 一起安装的包管里工具。  允许用户从NPM服务器下载别人编写的第三方包到本地使用。 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。  1.模块初始化创建模块，package.json 文件是必不可少的。我们可以使用 NPM 生成 package.json 文件，生成的文件包">
-<meta property="og:updated_time" content="2017-05-10T05:18:38.000Z">
+<meta property="og:description" content="什么是HTTP ?HTTP 协议简介HTTP 是超文本传输协议 (Hyper Text Transfer Protocol)的缩写,用于 WWW 服务 HTTP的工作原理HTTP是一个面向事务的客户服务器协议.尽管 HTTP使用TCP 作为底层传输协议,但是HTTP 协议是无状态的,也就是说,每个事务都是独立的进行处理.在浏览器和服务器之间的请求和响应的交互，必须遵循 HTTP 规定的格式和规则。">
+<meta property="og:updated_time" content="2017-05-18T09:56:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZZ:D">
-<meta name="twitter:description" content="NPM的使用方法NPM 是随同 Node 一起安装的包管里工具。  允许用户从NPM服务器下载别人编写的第三方包到本地使用。 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。  1.模块初始化创建模块，package.json 文件是必不可少的。我们可以使用 NPM 生成 package.json 文件，生成的文件包">
+<meta name="twitter:description" content="什么是HTTP ?HTTP 协议简介HTTP 是超文本传输协议 (Hyper Text Transfer Protocol)的缩写,用于 WWW 服务 HTTP的工作原理HTTP是一个面向事务的客户服务器协议.尽管 HTTP使用TCP 作为底层传输协议,但是HTTP 协议是无状态的,也就是说,每个事务都是独立的进行处理.在浏览器和服务器之间的请求和响应的交互，必须遵循 HTTP 规定的格式和规则。">
   
     <link rel="alternative" href="/atom.xml" title="ZZ:D" type="application/atom+xml">
   
@@ -153,37 +153,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-NPM的使用方法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-什么是HTTP ?" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="NPM的使用方法"><a href="#NPM的使用方法" class="headerlink" title="NPM的使用方法"></a>NPM的使用方法</h1><p>NPM 是随同 Node 一起安装的包管里工具。</p>
+        <h1 id="什么是HTTP"><a href="#什么是HTTP" class="headerlink" title="什么是HTTP ?"></a>什么是HTTP ?</h1><h3 id="HTTP-协议简介"><a href="#HTTP-协议简介" class="headerlink" title="HTTP 协议简介"></a>HTTP 协议简介</h3><p>HTTP 是超文本传输协议 (Hyper Text Transfer Protocol)的缩写,用于 WWW 服务</p>
+<h3 id="HTTP的工作原理"><a href="#HTTP的工作原理" class="headerlink" title="HTTP的工作原理"></a>HTTP的工作原理</h3><p>HTTP是一个面向事务的客户服务器协议.尽管 HTTP使用TCP 作为底层传输协议,但是HTTP 协议是无状态的,也就是说,每个事务都是独立的进行处理.<strong>在浏览器和服务器之间的请求和响应的交互，必须遵循 HTTP 规定的格式和规则。</strong></p>
+<p>1 浏览器分析待访问页面的 URL 并向本地 DNS 服务器请求 IP 地解析;<br>2 DNS 服务器解析出该 HTTP 服务器的 IP 地址并将 IP 地址返回给浏览器;<br>3 浏览器与 HTTP 服务器建立 TCP 连接，若连接成功，则进入下一步;<br>4 浏览器向 HTTP 服务器发出请求报文 (含 GET 信息)，请求访问服务器的指定页面;<br>5 服务器作出响应，将浏览器要访问的页面发送给浏览器，在页面传输过程中，浏览器会打开多个端口，与服务器建立多个连接;</p>
+<p>6 释放 TCP 连接;</p>
+<p>7 浏览器收到页面并显示给用户。</p>
+<h3 id="HTTP-报文格式"><a href="#HTTP-报文格式" class="headerlink" title="HTTP 报文格式"></a>HTTP 报文格式</h3><p>HTTP 有两类报文:从客户到服务器的<strong>请求报文</strong>和从服务器到客户的<strong>响应报文</strong>.</p>
+<p>显示了两种报文的结构。</p>
+<pre><code>#### 请求报文(请求行 首部行[HTTP头],实体 )
+</code></pre><ol>
+<li><p>请求行</p>
 <ul>
-<li>允许用户从NPM服务器下载别人编写的第三方包到本地使用。</li>
-<li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</li>
-<li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</li>
+<li>方法字段，最常用的方法为 “GET”，表示请求读取一个万维网的页面。常用的方法还有 “HEAD(指读取页面的首部)”和“POST(请求接受所附加的信息);</li>
+<li>URL 字段为主机上的文件名，这时因为在建立 TCP 连接时已经有了主机名;</li>
+<li>版本字段说明所使用的 HTTP 协议的版本，一般为 “HTTP/1.1”。</li>
 </ul>
-<h2 id="1-模块初始化"><a href="#1-模块初始化" class="headerlink" title="1.模块初始化"></a>1.模块初始化</h2><p>创建模块，package.json 文件是必不可少的。我们可以使用 NPM 生成 package.json 文件，生成的文件包含了基本的结果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure>
-<p>以上的信息，你需要根据你自己的情况输入。在最后输入 “yes” 后会生成 package.json 文件。同时在这个 json 文件中可以在 script 字段定义我们自己的一些脚本。</p>
-<h2 id="2-使用-npm-命令安装模块"><a href="#2-使用-npm-命令安装模块" class="headerlink" title="2.使用 npm 命令安装模块"></a>2.使用 npm 命令安装模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install &lt;Module Name&gt;</div><div class="line"></div><div class="line">例如</div><div class="line">npm install express --save</div></pre></td></tr></table></figure>
-<p>这时，就会在我们的工程目录下生成一个 node_modules 的文件夹，在里边就会有 express 这个包了。</p>
-<p>如果想要用这个包，只需要在需要的地方 require 或者 import 一下就可以了。</p>
-<h3 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h3><p>将包安装在项目内的 <code>node_modules</code> 下，如果没有这个文件夹， npm 会自动创建。可以通过 <code>require()</code> 来引入项目内的包。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install express --save  # 版本名和版本号记录在dependencies字段</div><div class="line">npm install express --save-dev  # 版本名和版本号记录在devDependencies字段</div></pre></td></tr></table></figure>
-<h3 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h3><p>全局安装后可以直接在命令行里使用，不能在项目内引入。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 全局安装</div><div class="line">npm install gulp -g</div></pre></td></tr></table></figure>
-<p>可以使用以下命令来查看所有全局安装的模块：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm ls -g</div></pre></td></tr></table></figure>
-<h2 id="3-卸载模块"><a href="#3-卸载模块" class="headerlink" title="3.卸载模块"></a>3.卸载模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm uninstall express</div></pre></td></tr></table></figure>
-<h2 id="4-更新模块"><a href="#4-更新模块" class="headerlink" title="4.更新模块"></a>4.更新模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm update express</div></pre></td></tr></table></figure>
-<h2 id="5-搜索模块"><a href="#5-搜索模块" class="headerlink" title="5.搜索模块"></a>5.搜索模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm search express</div></pre></td></tr></table></figure>
-<h2 id="6-发布模块"><a href="#6-发布模块" class="headerlink" title="6.发布模块"></a>6.发布模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm publish</div></pre></td></tr></table></figure>
-<p>这里需要注意，发布模块的话需要在 npm 官网注册账号，并且执行下面的命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm adduser</div><div class="line">Username: demo</div><div class="line">Password:</div><div class="line">Email:(this is public) 977527479@qq.com</div></pre></td></tr></table></figure>
-<h2 id="7-其他常用命令"><a href="#7-其他常用命令" class="headerlink" title="7.其他常用命令"></a>7.其他常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm help</div><div class="line">npm cache clear  #可以清空NPM本地的缓存</div><div class="line">npm unpublish @[版本号]  #撤销发布的某个版本的模块</div></pre></td></tr></table></figure>
-<h2 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h2>
+</li>
+<li><p>首部行</p>
+<ul>
+<li>第一个字段等同请求行的第三字段;</li>
+<li>第二个字段一般为“200”，表示一切正常，状态码共有41种，常用的有:301 (网站已转移)，400(服务器无法理解请求报文)，404(服务器没有锁请求的对象)等;</li>
+<li>第三个字段时解释状态码的短语。</li>
+<li>根据具体情况，首部行的行数是可变的。请求首部有 Accept 字段，其值表示浏览器,可以接受何种类型的媒体;Accept-language，其值表示浏览器使用的语言;User-agent 表明可用的浏览器类型。响应首部中有 Date、Server、Content-Type、Content-Length 等字段。在请求首部和响应首部中都有 Connection 字段，其值为 Keep-Alive 或 Close，表示服务器在传送完所请求的对象后是保持连接或关闭连接</li>
+</ul>
+</li>
+<li><p>实体</p>
+<ul>
+<li><p>若请求报文中使用 “GET”方法，首部行后面没有实体主体.</p>
+</li>
+<li><p>当使用”POST”方法,附加的信息被填写在实体部分.</p>
+</li>
+<li><p>在相应报文中 ,实体主部分为服务器发给客户的对象.</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>​
+</code></pre>
       
 
       
@@ -262,7 +273,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/10/NPM的使用方法/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/18/什么是HTTP " alt="微信分享二维码">
     </div>
 </div>
 
@@ -276,17 +287,8 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/15/iterm2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/10/Git和Github手册/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/05/15/iterm2/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
