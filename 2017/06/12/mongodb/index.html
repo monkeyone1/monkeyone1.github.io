@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | ZZ:D</title>
+  <title>ZZ:D</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="mongodbmongodbMongoDB 是一个基于分布式文件存储的数据库,  MongoDB 是非关系型数据库，传统的关系型数据库的 table （表）和 record （记录），在 MongoDB 这里都有对应的替代物。  MongoDB：是一个数据库软件，有时候我们简称它叫一个数据库，但是其实一个 MongoDB 运行起来，可以里面同时运行多个数据库 Database: 数据库。一般做法是">
+<meta property="og:type" content="article">
 <meta property="og:title" content="ZZ:D">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/06/12/mongodb/index.html">
 <meta property="og:site_name" content="ZZ:D">
+<meta property="og:description" content="mongodbmongodbMongoDB 是一个基于分布式文件存储的数据库,  MongoDB 是非关系型数据库，传统的关系型数据库的 table （表）和 record （记录），在 MongoDB 这里都有对应的替代物。  MongoDB：是一个数据库软件，有时候我们简称它叫一个数据库，但是其实一个 MongoDB 运行起来，可以里面同时运行多个数据库 Database: 数据库。一般做法是">
+<meta property="og:updated_time" content="2017-06-13T02:28:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZZ:D">
+<meta name="twitter:description" content="mongodbmongodbMongoDB 是一个基于分布式文件存储的数据库,  MongoDB 是非关系型数据库，传统的关系型数据库的 table （表）和 record （记录），在 MongoDB 这里都有对应的替代物。  MongoDB：是一个数据库软件，有时候我们简称它叫一个数据库，但是其实一个 MongoDB 运行起来，可以里面同时运行多个数据库 Database: 数据库。一般做法是">
   
     <link rel="alternative" href="/atom.xml" title="ZZ:D" type="application/atom+xml">
   
@@ -149,235 +153,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-mongodb" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h1><h3 id="mongodb-1"><a href="#mongodb-1" class="headerlink" title="mongodb"></a>mongodb</h3><p><em>MongoDB</em> 是一个基于分布式文件存储的数据库,  MongoDB 是非关系型数据库，传统的关系型数据库的 table （表）和 record （记录），在 MongoDB 这里都有对应的替代物。</p>
+<ul>
+<li>MongoDB：是一个数据库软件，有时候我们简称它叫一个数据库，但是其实一个 MongoDB 运行起来，可以里面同时运行多个数据库</li>
+<li>Database: 数据库。一般做法是，一个项目对应一个数据库。</li>
+<li>Collection: 集合。类似于关系型数据库下的<em>表</em>的概念，例如全班同学信息。</li>
+<li>Document：文档。一个集合中会包含多个文档（一个文档中存储一个同学的信息）。</li>
+</ul>
+<p><strong>安装</strong></p>
+<p>用HomeBrew 安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">berw install mongodb</div></pre></td></tr></table></figure>
+<p>Mongodb 创建仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p data/db   </div><div class="line">mongod --dbpath =./data/db</div></pre></td></tr></table></figure>
+<p> —dbpath 数据库的路径</p>
+<p><strong>启动</strong></p>
+<p>在命令终端中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo</div></pre></td></tr></table></figure>
+<p>这样进入mongo的命令行界面输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; use  express-api</div><div class="line">switched to db express-api</div></pre></td></tr></table></figure>
+<p><code>switched to db express-api</code>  表示已经切换到 express-api 的数据库了</p>
+<p>查看所有数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show dbs</div><div class="line">show collections</div></pre></td></tr></table></figure>
+<p> 此时此刻 没有发现新建的数据库 因为 没有数据保存到数据库</p>
+<p>我们来创建一个集合 名字叫做users.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span> db.createCollection('users')</div><div class="line">&#123; "ok" : 1 &#125;</div></pre></td></tr></table></figure>
+<p>建立成功</p>
+<p>存入一个数据把</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span> db.users.insert(&#123;username:'zzd',email:'startzzd@163.com'&#125;)</div><div class="line">WriteResult(&#123; "nInserted" : 1 &#125;)</div></pre></td></tr></table></figure>
+<p>输出结果 <code>WriteResult({ &quot;nInserted&quot; : 1 })</code> 表述成功写入一条数据。</p>
+<p>查找数据 <code>db.users.find()</code></p>
+<p>增加数据<code>db.users.insert({username:&#39;hello&#39;})</code></p>
+<p>更改数据<code>db.users.update({_id:&#39;123&#39;},{username:&#39;hello&#39;})</code> 查询条件 更改内容</p>
+<p>删除数据 <code>db.users.remove({_id: })</code></p>
+<h1 id="Express-操作-MongoDB"><a href="#Express-操作-MongoDB" class="headerlink" title="Express 操作 MongoDB"></a>Express 操作 MongoDB</h1><p>通过mongoose npm包 链接 mongodb;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>); 导入</div><div class="line"></div><div class="line">连接数据库, 连接数据库成功打印  success!</div><div class="line"><span class="keyword">const</span> db = mongoose.connection;</div><div class="line">db.on(<span class="string">'error'</span>, <span class="built_in">console</span>.log);</div><div class="line">db.once(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success!'</span>)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这里的 <a href="http://mongoosejs.com/docs/api.html#connection_Connection" target="_blank" rel="external">mongoose.connection</a> 会映射到数据库 <code>express-api</code>，若此时 MongoDB 数据库没有启动，则运行本项目的话，在命令行中会报告错误信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123; [MongoError: failed to connect to server [localhost:<span class="number">27017</span>] on first connect]</div><div class="line">  name: <span class="string">'MongoError'</span>,</div><div class="line">  <span class="attr">message</span>: <span class="string">'failed to connect to server [localhost:27017] on first connect'</span> &#125;</div></pre></td></tr></table></figure>
+<p>新建一个文件夹<code>models/post.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</div><div class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</div></pre></td></tr></table></figure>
+<p>导入 <code>mongoose</code> 功能模块以及调用它提供的 <a href="http://mongoosejs.com/docs/api.html#index_Mongoose-Schema" target="_blank" rel="external">Schema()</a> 接口创建一个新的 <a href="http://mongoosejs.com/docs/guide.html" target="_blank" rel="external">schema</a>，每个 schema 会映射为 MongoDB 数据库中的一个 collection（集合），同时还能定义所映射集合包含的字段，以及字段的类型等规范。下面代码就创建了一个名为 <code>PostSchema</code> 的 schema, 并规定所映射的集合将包含三个字段：category、title 和 content，并且每个字段只能存储字符串类型的数据，其中 <code>title</code>字段中存储的数据不能为空。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PostSchema = <span class="keyword">new</span> Schema(</div><div class="line">  &#123;</div><div class="line">    <span class="attr">category</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;,</div><div class="line">    <span class="attr">title</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span> &#125;,</div><div class="line">    <span class="attr">content</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;</div><div class="line">  &#125;,</div><div class="line">  &#123; <span class="attr">timestamps</span>: <span class="literal">true</span> &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>选项 <a href="http://mongoosejs.com/docs/guide.html#timestamps" target="_blank" rel="external">timestamps</a> 的值设置为 <code>true</code>，则自动给所映射集合添加 <code>createdAt</code> 和 <code>updatedAt</code> 两个字段。</p>
+<p>虽然定义了一个 schema，但是 Mongoose 还不知道这个 schema 到底映射成数据库中的哪个集合，所以还得把一个 schema 转换成一个 <a href="http://mongoosejs.com/docs/models.html" target="_blank" rel="external">model</a> 之后，根据 model 的名字，Mongoose 会自动查找到这个 schema 在数据库中对应的集合。</p>
+<p>最后导出</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Post'</span>, PostSchema);</div></pre></td></tr></table></figure>
+<p>通过 Mongoose 的 <a href="http://mongoosejs.com/docs/api.html#index_Mongoose-model" target="_blank" rel="external">model()</a> 方法把一个 schema 编译成一个 model，一个 model 实例会对应映射集合中的一条记录，这个 <code>model()</code> 方法的第一个参数 <code>Post</code> 则是映射集合名字的单数形式，所以 <code>PostSchema</code> 映射集合的名字是 <code>posts</code>。上述代码还把构建成的 Post Model 导出供外部其它文件使用。</p>
+<p>插入一条数据 在index 中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Post = <span class="built_in">require</span>(<span class="string">'./models/post'</span>)</div><div class="line"></div><div class="line">db.once(<span class="string">'open'</span>, ()=&gt; &#123;</div><div class="line">  <span class="keyword">let</span> post = <span class="keyword">new</span> Post(&#123;<span class="attr">title</span>: <span class="string">'mongoose usage'</span>&#125;)</div><div class="line">  post.save(<span class="function">(<span class="params">err</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">if</span>(err) <span class="built_in">console</span>.log(err)</div><div class="line">  &#125;)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success!'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>首先导入 Post model，然后创建一个新的 model 实例 <code>post</code>，其对应 <code>posts</code> 集合中的一条记录，最后数据保存到数据库。</p>
+<p>注意：因为使用了异步操作方法 <a href="http://mongoosejs.com/docs/api.html#model_Model-save" target="_blank" rel="external">save()</a> 导致在终端报告警告信息</p>
+<p> 解决办法是在连接 MongoDB 数据库 <code>mongoose.connect(...);</code> 之前，添加一行代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongoose.Promise = global.Promise</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/Nodejs安装配置/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/12/mongodb/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/jsconfig升级版/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/webpack 的基本使用/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/06/14/vue 2.0 个人学习手册/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/07/hello Express/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React  第七天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第 九 天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第四天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第五天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第二天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第三天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第一天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:17:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/3/">Next &raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -401,8 +352,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

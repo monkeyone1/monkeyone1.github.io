@@ -151,6 +151,416 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue的component 学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue的component-学习"><a href="#vue的component-学习" class="headerlink" title="vue的component 学习"></a>vue的component 学习</h1><p>Vue的component 组件 和react 一样是 是核心 所以我单独拿出来写个笔记 ✧(≖ ◡ ≖✿)嘿嘿</p>
+<p><strong>全局组件</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'zzd'</span>,&#123;</div><div class="line">           <span class="attr">template</span>: <span class="string">`&lt;div&gt;hello  这是全局zzd 标记 你好 我是&lt;em&gt;ZZ:D&lt;/em&gt;&lt;/div&gt;`</span></div><div class="line">       &#125;)</div><div class="line"></div><div class="line"></div><div class="line">&lt;zzd&gt;<span class="xml"><span class="tag">&lt;/<span class="name">zzd</span>&gt;</span></span> <span class="comment">// html</span></div></pre></td></tr></table></figure>
+<p><strong>局部组件</strong> </p>
+<ul>
+<li>只能在app 的作用域使用 ,在app 外 无效</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</div><div class="line">          <span class="attr">el</span>: <span class="string">"#app"</span>,</div><div class="line">          <span class="attr">components</span>:&#123;</div><div class="line">              <span class="string">"panda"</span>:&#123;</div><div class="line">                  <span class="attr">template</span>:<span class="string">`&lt;div style="color:red;"&gt;局部注册的啦啦标签&lt;/div&gt;`</span></div><div class="line">              &#125;</div><div class="line">          &#125;</div></pre></td></tr></table></figure>
+<p><strong>组件和指令的区别</strong></p>
+<p>组件注册的是一个标签,而指令是已有标签里的一个属性.</p>
+<p><strong>组件的传值  props</strong></p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</div><div class="line">           <span class="attr">el</span>: <span class="string">"#app"</span>,</div><div class="line">           <span class="attr">components</span>:&#123;</div><div class="line">               <span class="string">"com"</span>:&#123;</div><div class="line">                   <span class="attr">template</span>:<span class="string">`&lt;div style="color:red;"&gt;&#123;&#123;here&#125;&#125;&lt;/div&gt;`</span>,</div><div class="line">                   <span class="attr">props</span>:[<span class="string">'here'</span>]</div><div class="line">               &#125;</div><div class="line">           &#125;</div></pre></td></tr></table></figure>
+<p>在HTML </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com</span> <span class="attr">here</span>=<span class="string">"my here"</span>&gt;</span><span class="tag">&lt;/<span class="name">com</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如果  传值的命名 出现了 ‘ - ‘ 那么需要用小驼峰命名法 例如   </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com</span> <span class="attr">here</span>=<span class="string">"my here"</span>&gt;</span><span class="tag">&lt;/<span class="name">com</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">props:[<span class="string">'here'</span>,<span class="string">'fromHere'</span>]</div></pre></td></tr></table></figure>
+<p>Ps: 小驼峰与驼峰的区别    大驼峰就是第一个字母大写</p>
+<p>个人不推荐..</p>
+<p>还有一种是我们开发中最常用的 使用 绑定的方式来使用data里数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</div><div class="line">           <span class="attr">el</span>: <span class="string">"#app"</span>,</div><div class="line">           <span class="attr">data</span>:&#123;</div><div class="line">               <span class="attr">msg</span> : <span class="string">'hello  我这 data msg'</span></div><div class="line">           &#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com</span> <span class="attr">:here</span>=<span class="string">'msg'</span>&gt;</span><span class="tag">&lt;/<span class="name">com</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> <strong>component</strong>标签</p>
+<p><code>component</code>     标签想一个容器 可以动态绑定 我们的组件 根据is 来判断现实什么,举个栗子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> componentA =&#123;</div><div class="line">          <span class="attr">template</span> : <span class="string">`&lt;div&gt;hello 这里是A&lt;/div&gt;`</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">const</span> componentB =&#123;</div><div class="line">          <span class="attr">template</span> : <span class="string">`&lt;div&gt;hello 这里是B&lt;/div&gt;`</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">const</span> componentC =&#123;</div><div class="line">          <span class="attr">template</span> : <span class="string">`&lt;div&gt;hello 这里是C&lt;/div&gt;`</span></div><div class="line">      &#125;</div><div class="line">    </div><div class="line">      <span class="comment">// new Vue 中</span></div><div class="line">        components:&#123;</div><div class="line">               <span class="string">"componentA"</span>:componentA,</div><div class="line">               <span class="string">"componentB"</span>:componentB,</div><div class="line">               <span class="string">"componentC"</span>:componentC,</div><div class="line">           &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"who"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/25/vue的component 学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-# vue 的全局 api" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue-的全局-api"><a href="#vue-的全局-api" class="headerlink" title="vue 的全局 api"></a>vue 的全局 api</h1><h3 id="自定义指令-Vue-directive"><a href="#自定义指令-Vue-directive" class="headerlink" title="自定义指令 Vue.directive"></a>自定义指令 Vue.directive</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;p v-zzd&gt;&#123;&#123;num&#125;&#125;&lt;/p&gt;</div><div class="line">Vue.directive('zzd',function(el,binding,vnode)&#123;</div><div class="line">        el.style.color ='#ccc';</div><div class="line">        console.log(binding.name); //zzd</div><div class="line">        console.log(binding); //一个对象</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<p><strong>el:</strong> 指令所绑定的元素，可以用来直接操作DOM。</p>
+<p><strong>binding:  </strong>一个对象，包含指令的很多信息。</p>
+<p><strong>vnode:</strong> Vue编译生成的虚拟节点</p>
+<p><strong>自定义的指令生命周期</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Vue.directive(<span class="string">'zzd'</span>, &#123;</div><div class="line">           <span class="attr">bind</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//被绑定</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'1 - bind'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">inserted</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//绑定到节点</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'2 - inserted'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">update</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//组件更新</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'3 - update'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">componentUpdated</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//组件更新完成</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'4 - componentUpdated'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">unbind</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//解绑</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'1 - bind'</span>);</div><div class="line">           &#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>bind:只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个绑定时执行一次的初始化动作。</li>
+<li>inserted:被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document中）。</li>
+<li>update:被绑定于元素所在的模板更新时调用，而无论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新。</li>
+<li>componentUpdated:被绑定元素所在模板完成一次更新周期时调用。</li>
+<li>unbind:只调用一次，指令与元素解绑时调用。</li>
+</ol>
+<p><strong>自定义标签  Vue.extend</strong>  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hello = Vue.extend(&#123;</div><div class="line">          <span class="attr">template</span>:<span class="string">"&lt;p&gt;&lt;a :href='authorUrl'&gt;&#123;&#123;authorName&#125;&#125;&lt;/a&gt;&lt;/p&gt;"</span>,</div><div class="line">          <span class="attr">data</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">              <span class="keyword">return</span>&#123;</div><div class="line">                  <span class="attr">authorName</span>:<span class="string">'hello'</span>,</div><div class="line">                  <span class="attr">authorUrl</span>:<span class="string">'http://www.baidu.com'</span></div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">   <span class="keyword">new</span> hello().$mount(<span class="string">'#hello'</span>)</div></pre></td></tr></table></figure>
+<p><strong>vue.set 到底干嘛的</strong></p>
+<ul>
+<li>由于Javascript的限制，Vue不能自动检测以下变动的数组。</li>
+</ul>
+<ul>
+<li>当你利用索引直接设置一个项时，vue不会为我们自动更新。</li>
+<li>当你修改数组的长度时，vue不会为我们自动更新。</li>
+</ul>
+<p><strong>vue 生命周期</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">beforeCreate:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'1-beforeCreate 初始化之后'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">created</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'2-created 创建完成'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeMount</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'3-beforeMount 挂载之前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">mounted</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'4-mounted 被创建'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeUpdate</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'5-beforeUpdate 数据更新前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">updated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'6-updated 被更新后'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">activated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'7-activated'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">deactivated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'8-deactivated'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeDestroy</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'9-beforeDestroy 销毁之前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">destroyed</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'10-destroyed 销毁之后'</span>)</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/22/# vue 的全局 api/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-WebStrom 快捷键" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="WebStrom-快捷键"><a href="#WebStrom-快捷键" class="headerlink" title="WebStrom 快捷键"></a>WebStrom 快捷键</h1><p>Command+alt+T 用 (if..else, try..catch, for, etc.)包住</p>
+<p>Command+/ 注释/取消注释的行注释</p>
+<p>Command+alt+/ 注释/取消注释与块注释</p>
+<p>alt+↑ 向上选取代码块</p>
+<p>alt+↓ 向下选取代码块</p>
+<p>Command+alt+L 格式化代码</p>
+<p>tab,shift+tab 调整缩进</p>
+<p>Control+alt+I 快速调整缩进</p>
+<p>Command+C 复制</p>
+<p>Command+X 剪切</p>
+<p>Command+V 粘贴</p>
+<p>Command+shift+V 从剪贴板里选择粘贴</p>
+<p>Command+D 复制代码副本</p>
+<p>Command+delete 删除当前行</p>
+<p>Control+Shift+J 清除缩进变成单行</p>
+<p>shift+回车 快速换行</p>
+<p>Command+回车 换行光标还在原先位置</p>
+<p>Command+shift+U 大小写转换</p>
+<p>Command+shift+[,Command+shift+] 文件选项卡快速切换</p>
+<p>Command+加号,Command+减号 收缩代码块</p>
+<p>Command+shift+加号，Command+shift+减号 收缩整个文档的代码块</p>
+<p>Command+W 关闭当前文件选项卡</p>
+<p>alt+单击 光标在多处定位</p>
+<p>Control+shift+J 把下面行的缩进收上来</p>
+<p>shift + F6 高级修改，可快速修改光标所在的标签、变量、函数等</p>
+<p>alt+/ 代码补全</p>
+<h2 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h2><p>Command+O 跳转到某个类</p>
+<p>Command+shift+O 跳转到某个文件</p>
+<p>Command+alt+O 跳转到某个符号</p>
+<p>Control+←,Control+→ 转到上/下一个编辑器选项卡</p>
+<p>F12 打开之前打开的工具窗口（TODO、终端等）</p>
+<p>Command+L 跳转行</p>
+<p>Command+E 弹出最近文件</p>
+<p>Command+alt+←,Command+alt+→ 向前向后导航到代码块交接处（一般是空行处）</p>
+<p>Command+shift+delete 导航到上一个编辑位置的位置</p>
+<p>Command+B 跳转到变量声明处</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/21/WebStrom 快捷键/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-node 版本迁移" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="node-版本迁移"><a href="#node-版本迁移" class="headerlink" title="node 版本迁移"></a>node 版本迁移</h1><p>当项目迁移时候千万要看 当前node  <code>node -v</code> 别问我为什么 我心疼</p>
+<p>nvm常用命令：</p>
+<figure class="highlight"><figcaption><span>she</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">nvm install &lt;version&gt;  ## 安装指定版本，可模糊安装，如：安装v6.1.0，既可nvm install v6.10，又可nvm install 6.10</div><div class="line"></div><div class="line">nvm uninstall &lt;version&gt;  ## 删除已安装的指定版本，语法与install类似</div><div class="line"></div><div class="line">nvm use &lt;version&gt;  ## 切换使用指定的版本node</div><div class="line"></div><div class="line">nvm ls  ## 列出所有安装的版本</div><div class="line">nvm alias default 6.10  ##设置默认</div><div class="line"></div><div class="line">nvm ls-remote  ## 列出所以远程服务器的版本（官方node version list）</div><div class="line"></div><div class="line">nvm current  ## 显示当前的版本</div><div class="line"></div><div class="line">nvm alias &lt;name&gt; &lt;version&gt;  ## 给不同的版本号添加别名</div><div class="line"></div><div class="line">nvm unalias &lt;name&gt;  ## 删除已定义的别名</div><div class="line"></div><div class="line">nvm reinstall-packages &lt;version&gt;  ## 在当前版本node环境下，重新全局安装指定版本号的npm包</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/16/node 版本迁移/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-vue 2.0 个人学习手册" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue-2-0-个人学习手册"><a href="#vue-2-0-个人学习手册" class="headerlink" title="vue 2.0 个人学习手册"></a>vue 2.0 个人学习手册</h1><p>废话不说了 vue是结合react 和angular 优点</p>
+<p><strong>vue 指令集</strong></p>
+<ul>
+<li><p><code>v-if</code>指令 根据 状态 用来判断是否加载html的DOM</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;p v-if=&quot;hello&quot;&gt;yes&lt;/p&gt;</div><div class="line">data () &#123;</div><div class="line">    return &#123;</div><div class="line">      hello: false,</div><div class="line">&#125;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>v-else</code>指令 一般配合 <code>v-if</code> 比较简单</p>
+</li>
+<li><p><code>v-show</code>指令 用法和<code>v-if</code>一样 ,调整css中display属性，DOM已经加载，只是CSS控制没有显示出来</p>
+</li>
+<li><p><code>v-for</code>指令  类似 <code>for of</code> 想循环那个元素就在那个元素添加</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//遍历数组</div><div class="line">&lt;li v-for=&quot;item in items&quot;&gt;</div><div class="line">        &#123;&#123;item&#125;&#125;</div><div class="line">&lt;/li&gt;</div><div class="line">可以使用vue的computed 来 遍历数据.排序</div><div class="line">在methods添加</div><div class="line"> NumberSort(a,b) &#123;</div><div class="line">                     return a-b</div><div class="line">                &#125;</div><div class="line"> computed:&#123; //只能添加 能用方法 只能新建个 sortitems 的方法</div><div class="line">            sortitems : function () &#123;</div><div class="line">                return this.items.sort(this.NumberSort)</div><div class="line">              &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 遍历对象</div><div class="line">&lt;div v-for=&apos;(item,index) in objs &apos;&gt;</div><div class="line">  id &#123;&#123;index&#125;&#125; 姓名 &#123;&#123;item.name&#125;&#125; 年龄 &#123;&#123;item.age&#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">/数组对象方法排序:</div><div class="line">function sortByKey(array,key)&#123;</div><div class="line">    return array.sort(function(a,b)&#123;</div><div class="line">      var x=a[key];</div><div class="line">      var y=b[key];</div><div class="line">      return ((x&lt;y)?-1:((x&gt;y)?1:0));</div><div class="line">   &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">2</div><div class="line">3</div><div class="line">sortStudent:function()&#123;</div><div class="line">     return sortByKey(this.students,&apos;age&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>​</p>
+</li>
+</ul>
+</li>
+<li><p><code>v-bind</code>指令 缩写 <code>:</code> 绑定属性</p>
+<ul>
+<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">v-bind:src=”imgSrc” 绑定路径</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"className"</span>&gt;</span>1、绑定classA<span class="tag">&lt;/<span class="name">div</span>&gt;</span>绑定calss</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"&#123;classA:isOk&#125;"</span>&gt;</span>2、绑定class中的判断<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA,classB]"</span>&gt;</span>3、绑定class中的数组<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"isOk?classA:classB"</span>&gt;</span>4、绑定class中的三元表达式判断<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">div :style="&#123;color:red,fontSize:font&#125;"&gt;5、绑定style<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>​</p>
+</li>
+</ul>
+</li>
+<li><p><code>v-on</code>指令 <code>@</code> 绑定事件如<code>@click=&#39;handleClick&#39;</code></p>
+</li>
+<li><p><code>v-once</code>指令</p>
+</li>
+<li><p><code>v-modle</code>  </p>
+<ul>
+<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"txext"</span> <span class="attr">v-model.number.trim</span>=<span class="string">"input"</span>&gt;</span></div><div class="line">使用</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>多选绑定一个数组<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"123"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>1321<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"12123"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>234<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"1213"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>234<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;web_Names&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;单选按钮绑定&lt;/h3&gt;</div><div class="line">&lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;男&quot; v-model=&quot;sex&quot;&gt;</div><div class="line">&lt;label for=&quot;one&quot;&gt;男&lt;/label&gt;</div><div class="line">&lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;女&quot; v-model=&quot;sex&quot;&gt;</div><div class="line">&lt;label for=&quot;one&quot;&gt;女&lt;/label&gt;</div><div class="line">&lt;p&gt;&#123;&#123;sex&#125;&#125;&lt;/p&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>.lazy：懒加载 失去光标后,取代 imput 监听 change 事件。</p>
+</li>
+<li><p>.number：输入字符串转为数字。</p>
+</li>
+<li><p>.trim：输入去掉首尾空格。</p>
+</li>
+</ul>
+<p>​</p>
+<h3 id="v-if-和v-show的区别"><a href="#v-if-和v-show的区别" class="headerlink" title="v-if 和v-show的区别"></a>v-if 和v-show的区别</h3><p>v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。</p>
+<p>v-show：调整css dispaly属性，可以使客户端操作更加流畅。</p>
+</li>
+</ul>
+<p>不要在<code>methods</code> 中写 箭头函数 ,会导致 <code>this</code>指向问题. ps:原因找到了是因为<code>method</code>会制动绑定 this 类似于<code>React.createClass</code></p>
+<h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p><code>vue-router</code> 和 <code>react-router</code> 写法有一些不一样， 但是写了一遍还好</p>
+<p><code>&lt;router-view&gt;&lt;/router-view&gt;</code>   路由渲染区</p>
+<p>基本用法 </p>
+<ol>
+<li><p>导入 组件  加载 router</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div></pre></td></tr></table></figure>
+</li>
+<li><p>路由组件 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/'</span>, <span class="comment">//组件路径</span></div><div class="line">      component: Hello <span class="comment">// 组件</span></div><div class="line">    &#125;, &#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/a'</span>,</div><div class="line">      <span class="attr">component</span>: first</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>子路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> abc = &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">`&lt;div&gt;</span></div><div class="line">  &lt;h2&gt;这里是abc&lt;/h2&gt;</div><div class="line">  &lt;router-view&gt;&lt;/router-view&gt;</div><div class="line">&lt;/div&gt;`&#125;</div><div class="line"><span class="keyword">const</span> abc1 = &#123; <span class="attr">template</span>: <span class="string">'&lt;div&gt;这里是abc1&lt;/div&gt;'</span> &#125;</div><div class="line"><span class="keyword">const</span> abc2 = &#123; <span class="attr">template</span>: <span class="string">'&lt;div&gt;这里是abc2&lt;/div&gt;'</span> &#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/abc'</span>,</div><div class="line">      <span class="attr">component</span>: abc,</div><div class="line">      <span class="attr">children</span>: [</div><div class="line">        &#123; <span class="attr">path</span>: <span class="string">'/'</span>, <span class="attr">component</span>: abc1 &#125;,</div><div class="line">        &#123;<span class="attr">path</span>: <span class="string">'aa'</span>, <span class="attr">component</span>: abc2&#125;</div><div class="line">      ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>404</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'*'</span>, <span class="comment">//通配符</span></div><div class="line">      component: f404</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
+</li>
+</ol>
+<h2 id="路由的传值"><a href="#路由的传值" class="headerlink" title="路由的传值"></a>路由的传值</h2><p>有两种方法 一个在路由中传 name</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/'</span>,</div><div class="line">      <span class="attr">name</span>: <span class="string">'hello'</span>,</div><div class="line">      <span class="attr">component</span>: Hello</div><div class="line">&#125;</div><div class="line"></div><div class="line">在子路由中获取</div><div class="line">  &#123;&#123;$route.name&#125;&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/14/vue 2.0 个人学习手册/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-mongodb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h1><h3 id="mongodb-1"><a href="#mongodb-1" class="headerlink" title="mongodb"></a>mongodb</h3><p><em>MongoDB</em> 是一个基于分布式文件存储的数据库,  MongoDB 是非关系型数据库，传统的关系型数据库的 table （表）和 record （记录），在 MongoDB 这里都有对应的替代物。</p>
+<ul>
+<li>MongoDB：是一个数据库软件，有时候我们简称它叫一个数据库，但是其实一个 MongoDB 运行起来，可以里面同时运行多个数据库</li>
+<li>Database: 数据库。一般做法是，一个项目对应一个数据库。</li>
+<li>Collection: 集合。类似于关系型数据库下的<em>表</em>的概念，例如全班同学信息。</li>
+<li>Document：文档。一个集合中会包含多个文档（一个文档中存储一个同学的信息）。</li>
+</ul>
+<p><strong>安装</strong></p>
+<p>用HomeBrew 安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">berw install mongodb</div></pre></td></tr></table></figure>
+<p>Mongodb 创建仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p data/db   </div><div class="line">mongod --dbpath =./data/db</div></pre></td></tr></table></figure>
+<p> —dbpath 数据库的路径</p>
+<p><strong>启动</strong></p>
+<p>在命令终端中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo</div></pre></td></tr></table></figure>
+<p>这样进入mongo的命令行界面输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; use  express-api</div><div class="line">switched to db express-api</div></pre></td></tr></table></figure>
+<p><code>switched to db express-api</code>  表示已经切换到 express-api 的数据库了</p>
+<p>查看所有数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show dbs</div><div class="line">show collections</div></pre></td></tr></table></figure>
+<p> 此时此刻 没有发现新建的数据库 因为 没有数据保存到数据库</p>
+<p>我们来创建一个集合 名字叫做users.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span> db.createCollection('users')</div><div class="line">&#123; "ok" : 1 &#125;</div></pre></td></tr></table></figure>
+<p>建立成功</p>
+<p>存入一个数据把</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span> db.users.insert(&#123;username:'zzd',email:'startzzd@163.com'&#125;)</div><div class="line">WriteResult(&#123; "nInserted" : 1 &#125;)</div></pre></td></tr></table></figure>
+<p>输出结果 <code>WriteResult({ &quot;nInserted&quot; : 1 })</code> 表述成功写入一条数据。</p>
+<p>查找数据 <code>db.users.find()</code></p>
+<p>增加数据<code>db.users.insert({username:&#39;hello&#39;})</code></p>
+<p>更改数据<code>db.users.update({_id:&#39;123&#39;},{username:&#39;hello&#39;})</code> 查询条件 更改内容</p>
+<p>删除数据 <code>db.users.remove({_id: })</code></p>
+<h1 id="Express-操作-MongoDB"><a href="#Express-操作-MongoDB" class="headerlink" title="Express 操作 MongoDB"></a>Express 操作 MongoDB</h1><p>通过mongoose npm包 链接 mongodb;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>); 导入</div><div class="line"></div><div class="line">连接数据库, 连接数据库成功打印  success!</div><div class="line"><span class="keyword">const</span> db = mongoose.connection;</div><div class="line">db.on(<span class="string">'error'</span>, <span class="built_in">console</span>.log);</div><div class="line">db.once(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success!'</span>)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这里的 <a href="http://mongoosejs.com/docs/api.html#connection_Connection" target="_blank" rel="external">mongoose.connection</a> 会映射到数据库 <code>express-api</code>，若此时 MongoDB 数据库没有启动，则运行本项目的话，在命令行中会报告错误信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123; [MongoError: failed to connect to server [localhost:<span class="number">27017</span>] on first connect]</div><div class="line">  name: <span class="string">'MongoError'</span>,</div><div class="line">  <span class="attr">message</span>: <span class="string">'failed to connect to server [localhost:27017] on first connect'</span> &#125;</div></pre></td></tr></table></figure>
+<p>新建一个文件夹<code>models/post.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</div><div class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</div></pre></td></tr></table></figure>
+<p>导入 <code>mongoose</code> 功能模块以及调用它提供的 <a href="http://mongoosejs.com/docs/api.html#index_Mongoose-Schema" target="_blank" rel="external">Schema()</a> 接口创建一个新的 <a href="http://mongoosejs.com/docs/guide.html" target="_blank" rel="external">schema</a>，每个 schema 会映射为 MongoDB 数据库中的一个 collection（集合），同时还能定义所映射集合包含的字段，以及字段的类型等规范。下面代码就创建了一个名为 <code>PostSchema</code> 的 schema, 并规定所映射的集合将包含三个字段：category、title 和 content，并且每个字段只能存储字符串类型的数据，其中 <code>title</code>字段中存储的数据不能为空。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PostSchema = <span class="keyword">new</span> Schema(</div><div class="line">  &#123;</div><div class="line">    <span class="attr">category</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;,</div><div class="line">    <span class="attr">title</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span> &#125;,</div><div class="line">    <span class="attr">content</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;</div><div class="line">  &#125;,</div><div class="line">  &#123; <span class="attr">timestamps</span>: <span class="literal">true</span> &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>选项 <a href="http://mongoosejs.com/docs/guide.html#timestamps" target="_blank" rel="external">timestamps</a> 的值设置为 <code>true</code>，则自动给所映射集合添加 <code>createdAt</code> 和 <code>updatedAt</code> 两个字段。</p>
+<p>虽然定义了一个 schema，但是 Mongoose 还不知道这个 schema 到底映射成数据库中的哪个集合，所以还得把一个 schema 转换成一个 <a href="http://mongoosejs.com/docs/models.html" target="_blank" rel="external">model</a> 之后，根据 model 的名字，Mongoose 会自动查找到这个 schema 在数据库中对应的集合。</p>
+<p>最后导出</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Post'</span>, PostSchema);</div></pre></td></tr></table></figure>
+<p>通过 Mongoose 的 <a href="http://mongoosejs.com/docs/api.html#index_Mongoose-model" target="_blank" rel="external">model()</a> 方法把一个 schema 编译成一个 model，一个 model 实例会对应映射集合中的一条记录，这个 <code>model()</code> 方法的第一个参数 <code>Post</code> 则是映射集合名字的单数形式，所以 <code>PostSchema</code> 映射集合的名字是 <code>posts</code>。上述代码还把构建成的 Post Model 导出供外部其它文件使用。</p>
+<p>插入一条数据 在index 中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Post = <span class="built_in">require</span>(<span class="string">'./models/post'</span>)</div><div class="line"></div><div class="line">db.once(<span class="string">'open'</span>, ()=&gt; &#123;</div><div class="line">  <span class="keyword">let</span> post = <span class="keyword">new</span> Post(&#123;<span class="attr">title</span>: <span class="string">'mongoose usage'</span>&#125;)</div><div class="line">  post.save(<span class="function">(<span class="params">err</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">if</span>(err) <span class="built_in">console</span>.log(err)</div><div class="line">  &#125;)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success!'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>首先导入 Post model，然后创建一个新的 model 实例 <code>post</code>，其对应 <code>posts</code> 集合中的一条记录，最后数据保存到数据库。</p>
+<p>注意：因为使用了异步操作方法 <a href="http://mongoosejs.com/docs/api.html#model_Model-save" target="_blank" rel="external">save()</a> 导致在终端报告警告信息</p>
+<p> 解决办法是在连接 MongoDB 数据库 <code>mongoose.connect(...);</code> 之前，添加一行代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongoose.Promise = global.Promise</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/12/mongodb/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-hello Express" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -447,391 +857,9 @@
 
 
   
-    <article id="post-Nodejs安装配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Node安装配置"><a href="#Node安装配置" class="headerlink" title="Node安装配置"></a>Node安装配置</h1><p>安装 node 的方式很多，这里推荐用 nvm 装 node。</p>
-<h2 id="nvm-安装-node"><a href="#nvm-安装-node" class="headerlink" title="nvm 安装 node"></a>nvm 安装 node</h2><h3 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm"></a>安装 nvm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash</div></pre></td></tr></table></figure>
-<p>执行上边的命令就可以安装 nvm 了。</p>
-<h3 id="安装-node"><a href="#安装-node" class="headerlink" title="安装 node"></a>安装 node</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">查看有哪些版本可以安装</div><div class="line">nvm ls-remote</div><div class="line">安装版本 v5.10.1</div><div class="line">nvm install v5.10.1</div></pre></td></tr></table></figure>
-<p>这样就安装好了 node ，同时 npm 页就装好了。执行下面的命令来检查下本地的 node ，npm 版本吧。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">node -v</div><div class="line">npm -v</div></pre></td></tr></table></figure>
-<p>如果是 windows 机器的话，直接到 node 官网下载对应版本的软件，双击安装即可。</p>
-<h3 id="设置默认-node-版本"><a href="#设置默认-node-版本" class="headerlink" title="设置默认 node 版本"></a>设置默认 node 版本</h3><p>利用 nvm 可以在我们的机器上安装多个版本 node ，并且可以进行灵活的切换。下面将 5.10.1 这个 node 版本设置为默认。执行下面语句即可。重启 shell 之后，执行 <code>node -v</code> 可以查看当前的 node 版本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvm alias defaule 5.10.1</div></pre></td></tr></table></figure>
-<h3 id="配置-npm"><a href="#配置-npm" class="headerlink" title="配置 npm"></a>配置 npm</h3><p>npm 是一个非常强大的包管理工具，可以让我们非常方便的安装、卸载、更新插件包，但是默认的 npm 下载包是从国外的服务器获取，速度很不给力，这里推荐使用淘宝镜像。</p>
-<p>到<a href="https://npm.taobao.org/" target="_blank" rel="external">淘宝</a>相关页面。可以看到有多种使用方式。这里推荐执行下面的命令，即使用淘宝定制的 <code>cnpm</code> 。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure>
-<p>好，之后我们就可以用 <code>cnpm</code> 这个命令了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">检查下装好了吗</div><div class="line">cnpm -v</div><div class="line">之后装包的话可以直接</div><div class="line">cnpm install gulp</div></pre></td></tr></table></figure>
-<p>这样速度是不快多了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/Nodejs安装配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-jsconfig升级版" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>{</p>
-<p>  “compilerOptions”: {</p>
-<p>​    “target”: “ES6”,</p>
-<p>​    “sourceMap”: true</p>
-<p>  },</p>
-<p>  “include”: [</p>
-<p>​    “src/<em>*/</em>“</p>
-<p>  ],</p>
-<p>  “exclude”: [</p>
-<p>​    “node_modules”</p>
-<p>  ],</p>
-<p>  “typeAcquisition”: {</p>
-<p>​    “include”: [</p>
-<p>​      “lodash”</p>
-<p>​    ]</p>
-<p>  },</p>
-<p>   “lib”: [</p>
-<p>​    “es2015”</p>
-<p>  ]</p>
-<p>}</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/jsconfig升级版/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-webpack 的基本使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="webpack-的基本使用"><a href="#webpack-的基本使用" class="headerlink" title="webpack 的基本使用"></a>webpack 的基本使用</h2><p> webpack  是 JS 应用开发而生的<strong>模块打捆器</strong></p>
-<p>主要 的4个核心概念</p>
-<ul>
-<li><code>Entry</code>入口文件</li>
-<li><code>Output</code> 出口文件</li>
-<li><code>loader / rules</code>  加载器</li>
-<li><code>Plugins</code> 插件</li>
-</ul>
-<p>安装webpack</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install -g webpack</div><div class="line">npm install webpack --save-dev</div></pre></td></tr></table></figure>
-<p>webpack的配置文件   <code>webpack.config.js</code></p>
-<p>webpack的 入口文件 出口设置</p>
-<p>Entry 文件就是整个项目的入口文件</p>
-<p> Output 用来指明出口文件的名字，习惯上叫做 bundle.js</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">module.exports=&#123;</div><div class="line">  entry: './src/index.js',</div><div class="line">  output: &#123;</div><div class="line">    path: path.resolve(__dirname, "build"),</div><div class="line">    publicPath: "/build/",</div><div class="line">    filename: 'bundle.js'</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
-<p><del>Loader 加载器</del>   reles 规则</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123; test: /\.js$/, exclude: /node_modules/, use: "babel-loader" &#125;,</div><div class="line">      &#123; test: /\.css$/, use: [ "style-loader","css-loader" ] &#125;,</div><div class="line">      &#123; test: /\.less$/, use: [ "style-loader","css-loader","less-loader" ] &#125;,</div><div class="line">      &#123; test: /\.(jpe?g|png)$/, use: 'file-loader' &#125;,</div><div class="line">      &#123; test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/, use: "url-loader" &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
-<p>图片加载</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  test: /\.(jpe?g|png)$/,</div><div class="line">  loader: 'file-loader'</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>图标字体加载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,</div><div class="line">  loader: &quot;url?limit=10000&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Plugins 插件</p>
-<p>Webpack 还可以通过添加各种 Plugins 来丰富自己的功能。其他开发环境下能做的一些操作，例如文件压缩，使用 html 模板</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">  new webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">    compress: &#123;</div><div class="line">      warnings: false,</div><div class="line">      drop_console: false,</div><div class="line">    &#125;</div><div class="line">  &#125;),</div><div class="line">  new webpack.DefinePlugin(&#123;</div><div class="line">    'process.env.NODE_ENV': '"production"',</div><div class="line">  &#125;),</div><div class="line">  new webpack.HotModuleReplacementPlugin()</div><div class="line">]</div></pre></td></tr></table></figure>
-<h2 id="使用Babel-loader来解析es6和jsx"><a href="#使用Babel-loader来解析es6和jsx" class="headerlink" title="使用Babel-loader来解析es6和jsx"></a>使用Babel-loader来解析es6和jsx</h2><p>安装 balel</p>
- <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-loader babel-core --save-dev</div></pre></td></tr></table></figure>
-<p>新建个 <code>.balelrc</code> </p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"presets"</span>: [<span class="string">"env"</span>, <span class="string">"react"</span>],</div><div class="line">  <span class="attr">"plugins"</span>: []</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>下载三个预设需要下载安装</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev babel-preset-env babel-preset-react</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/webpack 的基本使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-React  第七天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    React     第七天</p>
-<h4 id="React核心-start-props-lifecycle-Compoment"><a href="#React核心-start-props-lifecycle-Compoment" class="headerlink" title="React核心 start,props,lifecycle,Compoment"></a>React核心 <strong>start,props,lifecycle,Compoment</strong></h4><p><strong>props</strong></p>
-<p> 组件之间数据传递 只能父级往子级传送</p>
-<p>使用方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">this.props //拿到父级传过来的数据</div><div class="line">this.props.xxx //根据对象名来获取数据</div></pre></td></tr></table></figure>
-<p> 设置默认属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">App.defaultProps = &#123;</div><div class="line">    bg: &apos;#0f0&apos;,</div><div class="line">    color: &apos;red&apos;,</div><div class="line">    pad: 80</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>类型检查 <strong>PropTypes</strong></p>
-<p> 需要导入<code>PropTypes</code> 没有导入可以写成<code>React.PropTypes.xxx</code></p>
-<p>通过指定 <code>propTypes</code> 可以校验props属性值的类型，校验可提升开发者体验，用于约定统一的接口规范</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import React, &#123;Component,PropTypes&#125; from &apos;react&apos;;</div><div class="line"></div><div class="line">App.propTypes=&#123;</div><div class="line">    bg:PropTypes.string,</div><div class="line">    pad:PropTypes.number</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用<code>...</code>用展开对象来代替普通赋值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Card  title=&apos;第三天的标题&apos; date=&apos;2017.3.30&apos; index=&#123;3&#125;/&gt;</div><div class="line">               &#123;data.map((item) =&gt; </div><div class="line">                            &lt; Card &#123;...item&#125;/&gt; </div><div class="line">               )&#125;</div></pre></td></tr></table></figure>
-<p><strong>Chidren</strong></p>
-<p><strong>AJAX</strong></p>
-<p>原生请求</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var xml = new XMLHttpRequest();</div><div class="line">   //</div><div class="line">   xml.onreadystatechange = function () &#123;</div><div class="line">       if (xml.readyState == 4 &amp;&amp; xml.status == 200) &#123;</div><div class="line">           console.log(xml.responseText);</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   xml.open(&quot;GET&quot;, &quot;https://cnodejs.org/api/v1/topics&quot;,true);</div><div class="line">   //limit=2 限制传回数据</div><div class="line">   xml.send();</div></pre></td></tr></table></figure>
-<p><strong>JSON</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var  jsonobj=JSON.stringify(obj);  // 对象转换过成JSON对象</div><div class="line">var obj=JSON.parse(jsonStr); // 将JSON对象解析成对象</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/React  第七天/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-React 第 九 天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="React-第-八-天"><a href="#React-第-八-天" class="headerlink" title="React 第 八 天"></a>React 第 八 天</h1><p> <strong>react-router</strong> </p>
-<p> 下载react-router</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-router --save</div></pre></td></tr></table></figure>
-<p> 一个简单的小Demo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123; Router, Route, browserHistory,IndexRoute, Redirect &#125; from &apos;react-router&apos;;</div><div class="line"></div><div class="line"></div><div class="line">lass Routers extends Component &#123;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;Router history=&#123;browserHistory&#125;&gt;</div><div class="line">        &lt;Route path=&quot;/&quot; component=&#123;Home&#125;&gt;</div><div class="line">          &lt;IndexRoute component=&#123;App&#125; onLeave=&#123;leaveAlert&#125;/&gt;</div><div class="line">          &lt;Route path=&quot;about&quot; component=&#123;About&#125; /&gt;</div><div class="line">          &lt;Route path=&quot;blog/:title&quot; component=&#123;Blog&#125; /&gt;</div><div class="line">          &lt;Route path=&quot;work&quot; component=&#123;Work&#125; onEnter=&#123;checkAdmin&#125;&gt;</div><div class="line">            &lt;Route path=&quot;detail&quot; component=&#123;Detail&#125; /&gt;</div><div class="line">          &lt;/Route&gt;</div><div class="line">          &#123;/* &lt;Route path=&quot;*&quot; component=&#123;NotFound&#125; /&gt; */&#125;</div><div class="line">          &lt;Route path=&quot;404&quot; component=&#123;NotFound&#125; /&gt;</div><div class="line">          &lt;Redirect from=&apos;aboutme&apos; to=&apos;about&apos; /&gt;</div><div class="line">          &lt;Redirect from=&apos;*&apos; to=&apos;404&apos; /&gt;</div><div class="line">        &lt;/Route&gt;</div><div class="line">      &lt;/Router&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default Routers;</div></pre></td></tr></table></figure>
-<p>这个小Dome 是react-route 最常用的方法</p>
-<p>导入的组件</p>
-<ul>
-<li><code>Router</code>  组件本身只是个容器 可以有属相 <code>history</code>分别有三个参数:<ul>
-<li><code>browserHistory</code>   这个需要服务器支持 不再通过Hash 完成,浏览器会调用HIstoty API.</li>
-<li><code>hashHistory</code>   路由将通过url 的hash部分(#),例如<code>hello.com/#/home</code></li>
-<li><code>createMemoryHistory</code>  用于服务器渲染, 会在内存中创建History 对象,不再和浏览器url互动</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><code>Route</code>  组件定义了url组件的对应的关心 ,你可以同时使用多个路由并且可以嵌套</p>
-<ul>
-<li><p><code>path</code> :代表用户访问的路径</p>
-</li>
-<li><p><code>component</code> :  用户访问这个路径的时候, 目的地址是个React的组件</p>
-</li>
-<li><p>路由钩子 每个路由都有 <code>onEnter</code>和<code>onLeave</code>钩子, 用户进入或离开的时候会触发(可以来做用户权限)</p>
-</li>
-<li><p>路由变量: <code>&lt;Route path=&quot;blog/:title&quot; component={Blog} /&gt;</code> 其中<code>:title</code>就是一个路由变量可通过<code>this.props.params.title</code>  来获取参数</p>
-<p>​</p>
-</li>
-</ul>
-</li>
-<li><p><code>IndexRoute</code> 组件</p>
-</li>
-<li><p><code>Redirect</code> 用于路由的跳转，即用户访问一个路由</p>
-</li>
-<li><p><code>Link</code>   是react-router 提供的组件 ，可以直接使用软件路由 （可以理解react 中的<code>a</code>标签  ）</p>
-<ul>
-<li><p><code>activeStyle</code></p>
-</li>
-<li><p><code>activeClassName</code></p>
-<p>​</p>
-</li>
-</ul>
-<p>​</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/React 第 九 天/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-React 第四天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="React-第四天"><a href="#React-第四天" class="headerlink" title="React 第四天"></a>React 第四天</h1><h2 id="es6-Class"><a href="#es6-Class" class="headerlink" title="es6 Class"></a>es6 Class</h2><ul>
-<li><p>ES6的<code>class</code>可以看作只是一个语法糖</p>
-</li>
-<li><p><code>constructor</code>方法，这就是构造方法，而<code>this</code>关键字则代表实例对象.类里面定义属性要写到<code>constructor</code>方法中,这个方法是类默认带的</p>
-</li>
-<li><p>默认就是严格模式</p>
-</li>
-<li><p>​</p>
-</li>
-<li><p>代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Peole &#123;</div><div class="line">  constructor(name ,age,height) &#123;</div><div class="line">    this.name=name;</div><div class="line">    this.age=age;</div><div class="line">  &#125;</div><div class="line">  say()&#123;</div><div class="line">    console.log(this.name,this.age,this.height);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>super</p>
-<ul>
-<li>可以当作函数使用，也可以当作对象使用</li>
-<li><code>super()</code>作为函数调用时，代表父类的构造函数</li>
-<li>更改<code>this</code> 指向</li>
-</ul>
-</li>
-<li><p>继承 <code>extends</code></p>
-</li>
-</ul>
-<p><strong>两种导入js模块的方式</strong></p>
-<ol>
-<li><p><strong>nodejs的方式导入js</strong></p>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">index.js</div><div class="line"> const test = require(&apos;./test&apos;);</div><div class="line"> console.log(test);</div><div class="line"> </div><div class="line"> test.js</div><div class="line">  let str =&apos;hello 这是个测试&apos;;</div><div class="line"> // module.exports = str; </div><div class="line"> // module.exports.str=str; 以对象形传递</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>原生js 方式导入js</p>
-<ul>
-<li><p>命名导出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// import &#123; str,sun &#125; from &apos;./test.js&apos;;</div><div class="line">// console.log(str);</div><div class="line">// sun()</div><div class="line"></div><div class="line">test.js</div><div class="line"> let str =&apos;hello 这是个测试&apos;;</div><div class="line"> function sun() &#123;</div><div class="line">     console.log(&apos;666&apos;);</div><div class="line"> &#125;</div><div class="line"> export &#123;str,sun&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>默认导出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">index.js</div><div class="line">import xxx from &apos;./test.js&apos;;</div><div class="line">console.log(xxx)；</div><div class="line">test.js</div><div class="line">let str =&apos;hello 这是个测试&apos;;</div><div class="line">export default str;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="React-基础"><a href="#React-基础" class="headerlink" title="React 基础"></a>React 基础</h2><p>   <strong>JSX语法特点 </strong></p>
-<ul>
-<li>jsx可以嵌入变量和表达式,注意在jsx变量中需要{}来包裹</li>
-<li>每个标签必须关闭</li>
-<li>每个react节点必须包裹在一个闭合标签内</li>
-<li>render 中  注释必须用{}包裹起来<code>{/* 我是注释 */}</code></li>
-<li><p><code>class</code> 要写成<code>className</code> <code>for</code>要改写成<code>HTMlfor</code></p>
-<p><strong>React 组件创建的方法</strong></p>
-</li>
-</ul>
-<p>组件名 必须大写 否者会当做 原生的html来渲染</p>
-<ol>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//第一种(过时)</div><div class="line">// var  Dom =React.createClass(&#123;</div><div class="line">// </div><div class="line">//   render:function() &#123;</div><div class="line">//     return(&lt;div&gt;aaaaaa&lt;/div&gt; )</div><div class="line">//   &#125;</div><div class="line">// &#125;)</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 第二种（常用）function</div><div class="line">// function Dom () &#123;</div><div class="line">//   return(</div><div class="line">//     &lt;div&gt;hello &lt;/div&gt;</div><div class="line">//   )</div><div class="line">// &#125;</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">class Header extends Component &#123;</div><div class="line">  render() &#123;</div><div class="line">    let color =&apos;green&apos;;</div><div class="line">    let style1=&#123;color:&#123;backgroud:&apos;#ff0&apos;&#125;,height:&#123;height:&apos;200px&apos;&#125;,text:&#123;textDecoration:&apos;underline&apos;&#125;&#125;</div><div class="line">    let style=&#123;color:color,height:&apos;53px&apos;&#125;</div><div class="line">    return (</div><div class="line">      &lt;div className=&apos;Header&apos; &gt;</div><div class="line">        &lt;h1 style=&#123;style&#125;&gt;Header&lt;/h1&gt;</div><div class="line">        &lt;h1 style=&#123;Object.assign(&#123;&#125;,style1.color,style1.height,style1.text)&#125; &gt;hello&lt;/h1&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default Header;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/React 第四天/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 

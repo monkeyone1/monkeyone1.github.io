@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | ZZ:D</title>
+  <title>ZZ:D</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="ZZ:D">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="ZZ:D">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZZ:D">
@@ -151,232 +151,259 @@
           <div id="js-content" class="content-ll">
             
   
-  
+    <article id="post-React 八天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="React-第8天"><a href="#React-第8天" class="headerlink" title="React 第8天"></a>React 第8天</h1><p><strong>React的生命周期(life-cycle)</strong></p>
+<p>setState 是异步方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//setState 的另一种写法 </div><div class="line">handleClick()&#123;</div><div class="line">    this.setState((prevProps,prevState) =&gt; (&#123;</div><div class="line">        num:prevState.num+20</div><div class="line">    &#125;))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实例化 </p>
+<ul>
+<li><p>getDefaultProps(es6 用app.defaultPros替代)</p>
+</li>
+<li><p>getInitialState()</p>
+</li>
+<li><p>componentWillMount</p>
+<ul>
+<li>在完成首次渲染之前调用，此时仍可以修改组件的state。</li>
+</ul>
+</li>
+<li><p>render</p>
+<ul>
+<li>必选的方法，创建虚拟DOM，该方法具有特殊的规则：<ul>
+<li>只能通过<code>this.props</code>和<code>this.state</code>访问数据</li>
+<li><code>this.props</code>和<code>this.state</code>更新会复发此方法</li>
+<li>可以返回<code>null</code>、<code>false</code>或任何React组件</li>
+<li>只能出现一个顶级组件（不能返回数组）</li>
+<li>不能改变组件的状态</li>
+<li>不能修改DOM的输出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>componentDidMount</p>
+<p>​</p>
+</li>
+</ul>
+<p>更新</p>
+<ul>
+<li>componentWillReceiveProps  </li>
+<li>shouldComponentUpdate<ul>
+<li>每次调用setState后都会调用shouldComponentUpdate判断是否需要重新渲染组件。</li>
+<li>默认返回<code>ture</code>,重新render</li>
+<li><code>false</code>表示跳过后续的生命周期方法</li>
+</ul>
+</li>
+<li>componentWillUpdate</li>
+<li>render</li>
+<li>componentDidUpdate ()</li>
+</ul>
+<p>销毁</p>
+<ul>
+<li><p>componentWillUnmount 组件被移除之前被调用，可以用于做一些清理工作</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="React的-form"><a href="#React的-form" class="headerlink" title="React的 form"></a>React的 form</h2><p>传统的form</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">form action=&apos;url&apos;提交地址	 method=&apos;GET/POST&apos;提交方式</div></pre></td></tr></table></figure>
+<p>input的处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;input onChange=&#123;//通过onchange事件来获取 value值</div><div class="line"></div><div class="line">                this.handleInput.bind(this,&apos;input&apos;)</div><div class="line">            &#125; type=&quot;text&quot; value=&#123;this.state.input&#125;/&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">handleInput(aaa,e)&#123;</div><div class="line">        console.log(e.target.value);</div><div class="line">        this.setState(&#123;</div><div class="line">            [aaa]:e.target.value, //key 变量 用[]包括</div><div class="line">            </div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/Nodejs安装配置/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/React 八天/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/jsconfig升级版/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+
+
+
+
+  
+    <article id="post-Flexbox 时代" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Flexbox-时代"><a href="#Flexbox-时代" class="headerlink" title="Flexbox 时代"></a>Flexbox 时代</h2><p>IE10 支持 flexbox  语法 <code>display:flexbox</code>  而不是<code>display:flex</code></p>
+<h3 id="容器的flex-direction属性"><a href="#容器的flex-direction属性" class="headerlink" title="容器的flex-direction属性"></a>容器的flex-direction属性</h3><p>此属性决定子元素布局的方向。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.parent</span>&#123;</div><div class="line">    <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</div><div class="line">&#125;</div><div class="line"></div><div class="line">分别代表：从左至右，从右至左，从上到下，从下到上。</div></pre></td></tr></table></figure>
+<h3 id="容器的flex-wrap属性。-和换行有关"><a href="#容器的flex-wrap属性。-和换行有关" class="headerlink" title="容器的flex-wrap属性。(和换行有关)"></a>容器的flex-wrap属性。(和换行有关)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    flex-wrap: nowrap(默认) | wrap | wrap-reverse</div><div class="line">    //不换行 ， 换行 ，从下至上换行。</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="wrap-换行"><a href="#wrap-换行" class="headerlink" title="wrap(换行)"></a>wrap(换行)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    flex-wrap:wrap;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="wrap-reverse"><a href="#wrap-reverse" class="headerlink" title="wrap-reverse"></a>wrap-reverse</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    flex-wrap:wrap-reverse;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="justify-content属性。-主轴的对齐方式。"><a href="#justify-content属性。-主轴的对齐方式。" class="headerlink" title="justify-content属性。(主轴的对齐方式。)"></a>justify-content属性。(主轴的对齐方式。)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    justify-content:flex-start | flex-end | center | space-between | space-around;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="flex-start-默认"><a href="#flex-start-默认" class="headerlink" title="flex-start(默认)"></a>flex-start(默认)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//修改相应css样式。</div><div class="line">.parent&#123;</div><div class="line">    width:550px;</div><div class="line">    justify-content:flex-start;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="align-items-交叉-Y轴上的对齐方式。"><a href="#align-items-交叉-Y轴上的对齐方式。" class="headerlink" title="align-items(交叉/Y轴上的对齐方式。)"></a>align-items(交叉/Y轴上的对齐方式。)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    align-items:flex-start | flex-end | center | baseline | stretch(默认);</div><div class="line">&#125;</div><div class="line">//和上面的属性几乎一致。</div><div class="line">stretch:如果没有设置高度。高度和容器高度一致。</div></pre></td></tr></table></figure>
+<h3 id="align-content-定义了多跟轴线的对齐方式。"><a href="#align-content-定义了多跟轴线的对齐方式。" class="headerlink" title="align-content(定义了多跟轴线的对齐方式。)"></a>align-content(定义了多跟轴线的对齐方式。)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    align-content:flex-start | flex-end | center | space-between | space-around | stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>flex-start：与交叉轴的起点对齐。</li>
+<li>flex-end：与交叉轴的终点对齐。</li>
+<li>center：与交叉轴的中点对齐。</li>
+<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+<li>stretch（默认值）：轴线占满整个交叉轴</li>
+</ul>
+<p>#### </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/Flexbox 时代/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/webpack 的基本使用/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+
+
+
+
+  
+    <article id="post-解决js多于提示" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>解决js多于提示</strong></p>
+<p>新建个jsconfig.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line">    &quot;compilerOptions&quot;: &#123;</div><div class="line">        &quot;lib&quot;: [</div><div class="line">            &quot;es2015&quot;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/解决js多于提示/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React  第七天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+
+
+
+
+  
+    <article id="post-解决 端口被占" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>解决 端口被占</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lsof -i:80880</div><div class="line">kill: -9 80808</div></pre></td></tr></table></figure>
+<p>​    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/解决 端口被占/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第 九 天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+
+
+
+
+  
+    <article id="post-基本shell命令使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基本shell命令使用"><a href="#基本shell命令使用" class="headerlink" title="基本shell命令使用"></a>基本shell命令使用</h1><p>这里只是列举一些常用的文件操作命令。</p>
+<h2 id="cd-跳转切换目录"><a href="#cd-跳转切换目录" class="headerlink" title="cd 跳转切换目录"></a>cd 跳转切换目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">格式：cd dirname 比如在打开用户主目录盘下的 myidoc 文件夹</div><div class="line">cd  ~/myidoc</div><div class="line">跳转到当前目录的上一级</div><div class="line">cd ../</div></pre></td></tr></table></figure>
+<h2 id="mkdir-新建文件夹"><a href="#mkdir-新建文件夹" class="headerlink" title="mkdir 新建文件夹"></a>mkdir 新建文件夹</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir myidoc</div></pre></td></tr></table></figure>
+<h2 id="touch-创建文件"><a href="#touch-创建文件" class="headerlink" title="touch 创建文件"></a>touch 创建文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">touch a.text</div><div class="line">可以同时创建多个文件，也可以创建隐藏文件</div><div class="line">touch a.tet b.html .gitignore</div></pre></td></tr></table></figure>
+<h2 id="ls-显示目录"><a href="#ls-显示目录" class="headerlink" title="ls 显示目录"></a>ls 显示目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ls</div><div class="line">显示所有文件，包括隐藏文件</div><div class="line">ls -a</div><div class="line">显示文件详情</div><div class="line">ls -l</div></pre></td></tr></table></figure>
+<h2 id="pwd-打印用户当前位置"><a href="#pwd-打印用户当前位置" class="headerlink" title="pwd 打印用户当前位置"></a>pwd 打印用户当前位置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pwd</div></pre></td></tr></table></figure>
+<h2 id="cat-显示文件内容"><a href="#cat-显示文件内容" class="headerlink" title="cat 显示文件内容"></a>cat 显示文件内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat a.html</div></pre></td></tr></table></figure>
+<h2 id="rm-删除文件或文件夹"><a href="#rm-删除文件或文件夹" class="headerlink" title="rm 删除文件或文件夹"></a>rm 删除文件或文件夹</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm a.txt</div><div class="line">rm -r myidoc</div></pre></td></tr></table></figure>
+<h2 id="cp-拷贝"><a href="#cp-拷贝" class="headerlink" title="cp 拷贝"></a>cp 拷贝</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 将文档 file1 复制成 file2</div><div class="line">cp file1 file2</div><div class="line"># 将文档 file1 复制到目录 dir1 下，文件名仍为 file1.</div><div class="line">cp file1 dir1</div><div class="line"># 将目录 /tmp 下的文档 file1复制到现行目录下，文件名仍为 file1.</div><div class="line">cp /tmp/file1 .</div><div class="line"># 将目录 /tmp 下的文档 file1现行目录下，档名</div><div class="line">为file2</div><div class="line">cp /tmp/file1 file2</div></pre></td></tr></table></figure>
+<h2 id="mv-移动或重命名文件"><a href="#mv-移动或重命名文件" class="headerlink" title="mv 移动或重命名文件"></a>mv 移动或重命名文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 将文档 file1，更改档名为 file2.</div><div class="line">mv file1 file2</div><div class="line"># 将文档 file1，移到目录 dir1 下，档名仍为 file1.</div><div class="line">mv file1 dir1</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/基本shell命令使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第四天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第五天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第二天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第三天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第一天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:17:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
-  
-
-    
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
     </nav>
   
 
@@ -400,9 +427,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

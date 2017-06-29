@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | ZZ:D</title>
+  <title>ZZ:D</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="vue的component 学习Vue的component 组件 和react 一样是 是核心 所以我单独拿出来写个笔记 ✧(≖ ◡ ≖✿)嘿嘿 全局组件 123456Vue.component(&apos;zzd&apos;,&amp;#123;           template: `&amp;lt;div&amp;gt;hello  这是全局zzd 标记 你好 我是&amp;lt;em&amp;gt;ZZ:D&amp;lt;/em&amp;gt;&amp;lt;/div&amp;">
+<meta property="og:type" content="article">
 <meta property="og:title" content="ZZ:D">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/06/25/vue的component 学习/index.html">
 <meta property="og:site_name" content="ZZ:D">
+<meta property="og:description" content="vue的component 学习Vue的component 组件 和react 一样是 是核心 所以我单独拿出来写个笔记 ✧(≖ ◡ ≖✿)嘿嘿 全局组件 123456Vue.component(&apos;zzd&apos;,&amp;#123;           template: `&amp;lt;div&amp;gt;hello  这是全局zzd 标记 你好 我是&amp;lt;em&amp;gt;ZZ:D&amp;lt;/em&amp;gt;&amp;lt;/div&amp;">
+<meta property="og:updated_time" content="2017-06-26T04:54:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZZ:D">
+<meta name="twitter:description" content="vue的component 学习Vue的component 组件 和react 一样是 是核心 所以我单独拿出来写个笔记 ✧(≖ ◡ ≖✿)嘿嘿 全局组件 123456Vue.component(&apos;zzd&apos;,&amp;#123;           template: `&amp;lt;div&amp;gt;hello  这是全局zzd 标记 你好 我是&amp;lt;em&amp;gt;ZZ:D&amp;lt;/em&amp;gt;&amp;lt;/div&amp;">
   
     <link rel="alternative" href="/atom.xml" title="ZZ:D" type="application/atom+xml">
   
@@ -149,235 +153,148 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue的component 学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue的component-学习"><a href="#vue的component-学习" class="headerlink" title="vue的component 学习"></a>vue的component 学习</h1><p>Vue的component 组件 和react 一样是 是核心 所以我单独拿出来写个笔记 ✧(≖ ◡ ≖✿)嘿嘿</p>
+<p><strong>全局组件</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'zzd'</span>,&#123;</div><div class="line">           <span class="attr">template</span>: <span class="string">`&lt;div&gt;hello  这是全局zzd 标记 你好 我是&lt;em&gt;ZZ:D&lt;/em&gt;&lt;/div&gt;`</span></div><div class="line">       &#125;)</div><div class="line"></div><div class="line"></div><div class="line">&lt;zzd&gt;<span class="xml"><span class="tag">&lt;/<span class="name">zzd</span>&gt;</span></span> <span class="comment">// html</span></div></pre></td></tr></table></figure>
+<p><strong>局部组件</strong> </p>
+<ul>
+<li>只能在app 的作用域使用 ,在app 外 无效</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</div><div class="line">          <span class="attr">el</span>: <span class="string">"#app"</span>,</div><div class="line">          <span class="attr">components</span>:&#123;</div><div class="line">              <span class="string">"panda"</span>:&#123;</div><div class="line">                  <span class="attr">template</span>:<span class="string">`&lt;div style="color:red;"&gt;局部注册的啦啦标签&lt;/div&gt;`</span></div><div class="line">              &#125;</div><div class="line">          &#125;</div></pre></td></tr></table></figure>
+<p><strong>组件和指令的区别</strong></p>
+<p>组件注册的是一个标签,而指令是已有标签里的一个属性.</p>
+<p><strong>组件的传值  props</strong></p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</div><div class="line">           <span class="attr">el</span>: <span class="string">"#app"</span>,</div><div class="line">           <span class="attr">components</span>:&#123;</div><div class="line">               <span class="string">"com"</span>:&#123;</div><div class="line">                   <span class="attr">template</span>:<span class="string">`&lt;div style="color:red;"&gt;&#123;&#123;here&#125;&#125;&lt;/div&gt;`</span>,</div><div class="line">                   <span class="attr">props</span>:[<span class="string">'here'</span>]</div><div class="line">               &#125;</div><div class="line">           &#125;</div></pre></td></tr></table></figure>
+<p>在HTML </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com</span> <span class="attr">here</span>=<span class="string">"my here"</span>&gt;</span><span class="tag">&lt;/<span class="name">com</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如果  传值的命名 出现了 ‘ - ‘ 那么需要用小驼峰命名法 例如   </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com</span> <span class="attr">here</span>=<span class="string">"my here"</span>&gt;</span><span class="tag">&lt;/<span class="name">com</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">props:[<span class="string">'here'</span>,<span class="string">'fromHere'</span>]</div></pre></td></tr></table></figure>
+<p>Ps: 小驼峰与驼峰的区别    大驼峰就是第一个字母大写</p>
+<p>个人不推荐..</p>
+<p>还有一种是我们开发中最常用的 使用 绑定的方式来使用data里数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app=<span class="keyword">new</span> Vue(&#123;</div><div class="line">           <span class="attr">el</span>: <span class="string">"#app"</span>,</div><div class="line">           <span class="attr">data</span>:&#123;</div><div class="line">               <span class="attr">msg</span> : <span class="string">'hello  我这 data msg'</span></div><div class="line">           &#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com</span> <span class="attr">:here</span>=<span class="string">'msg'</span>&gt;</span><span class="tag">&lt;/<span class="name">com</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> <strong>component</strong>标签</p>
+<p><code>component</code>     标签想一个容器 可以动态绑定 我们的组件 根据is 来判断现实什么,举个栗子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> componentA =&#123;</div><div class="line">          <span class="attr">template</span> : <span class="string">`&lt;div&gt;hello 这里是A&lt;/div&gt;`</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">const</span> componentB =&#123;</div><div class="line">          <span class="attr">template</span> : <span class="string">`&lt;div&gt;hello 这里是B&lt;/div&gt;`</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">const</span> componentC =&#123;</div><div class="line">          <span class="attr">template</span> : <span class="string">`&lt;div&gt;hello 这里是C&lt;/div&gt;`</span></div><div class="line">      &#125;</div><div class="line">    </div><div class="line">      <span class="comment">// new Vue 中</span></div><div class="line">        components:&#123;</div><div class="line">               <span class="string">"componentA"</span>:componentA,</div><div class="line">               <span class="string">"componentB"</span>:componentB,</div><div class="line">               <span class="string">"componentC"</span>:componentC,</div><div class="line">           &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"who"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/Nodejs安装配置/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/25/vue的component 学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/jsconfig升级版/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/webpack 的基本使用/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/22/# vue 的全局 api/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React  第七天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第 九 天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第四天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第五天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第二天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第三天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第一天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:17:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/page/3/">Next &raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -401,8 +318,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
