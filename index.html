@@ -151,6 +151,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue cli 配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue-cli-配置"><a href="#vue-cli-配置" class="headerlink" title="vue cli 配置"></a>vue cli 配置</h1><p><strong>安装</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install vue-cli -g</div></pre></td></tr></table></figure>
+<p><strong>初始化项目</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vue init &lt;template-name&gt; &lt;project-name&gt;</div></pre></td></tr></table></figure>
+<p><code>template-name</code> 表示模版名称 ,vue-cli 共有5种模版</p>
+<ul>
+<li>webpack 一个全面的webpack +vue-loder的模版,支持热加载,eslint ,css扩展</li>
+<li>webpack-simple-一个简单webpack+vue-loader的模板，不包含其他功能，让你快速的搭建vue的开发环境。</li>
+<li>browserify-一个全面的Browserify+vueify 的模板，功能包括热加载，linting,单元检测。</li>
+<li>browserify-simple-一个简单Browserify+vueify的模板，不包含其他功能，让你快速的搭建vue的开发环境。</li>
+<li>simple-一个最简单的单页应用模板。</li>
+</ul>
+<p><code>&lt;project-name&gt;</code> 就是自己的项目</p>
+<p><strong>常用指令</strong></p>
+<ol>
+<li><p><code>npm install</code> 安装package.json 里的包</p>
+</li>
+<li><p><code>npm run dev</code> 运行项目 </p>
+</li>
+<li><p><code>npm run build</code> 编译项目</p>
+<p>​</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/29/vue cli 配置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-page" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/29/page/">page</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/29/page/" class="archive-article-date">
+  	<time datetime="2017-06-29T05:05:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/29/page/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-vue的component 学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -195,6 +297,63 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/25/vue的component 学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-# vue 的全局 api " class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue-的全局-api"><a href="#vue-的全局-api" class="headerlink" title="vue 的全局 api"></a>vue 的全局 api</h1><h3 id="自定义指令-Vue-directive"><a href="#自定义指令-Vue-directive" class="headerlink" title="自定义指令 Vue.directive"></a>自定义指令 Vue.directive</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;p v-zzd&gt;&#123;&#123;num&#125;&#125;&lt;/p&gt;</div><div class="line">Vue.directive('zzd',function(el,binding,vnode)&#123;</div><div class="line">        el.style.color ='#ccc';</div><div class="line">        console.log(binding.name); //zzd</div><div class="line">        console.log(binding); //一个对象</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<p><strong>el:</strong> 指令所绑定的元素，可以用来直接操作DOM。</p>
+<p><strong>binding:  </strong>一个对象，包含指令的很多信息。</p>
+<p><strong>vnode:</strong> Vue编译生成的虚拟节点</p>
+<p><strong>自定义的指令生命周期</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Vue.directive(<span class="string">'zzd'</span>, &#123;</div><div class="line">           <span class="attr">bind</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//被绑定</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'1 - bind'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">inserted</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//绑定到节点</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'2 - inserted'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">update</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//组件更新</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'3 - update'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">componentUpdated</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//组件更新完成</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'4 - componentUpdated'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">unbind</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//解绑</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'1 - bind'</span>);</div><div class="line">           &#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>bind:只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个绑定时执行一次的初始化动作。</li>
+<li>inserted:被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document中）。</li>
+<li>update:被绑定于元素所在的模板更新时调用，而无论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新。</li>
+<li>componentUpdated:被绑定元素所在模板完成一次更新周期时调用。</li>
+<li>unbind:只调用一次，指令与元素解绑时调用。</li>
+</ol>
+<p><strong>自定义标签  Vue.extend</strong>  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hello = Vue.extend(&#123;</div><div class="line">          <span class="attr">template</span>:<span class="string">"&lt;p&gt;&lt;a :href='authorUrl'&gt;&#123;&#123;authorName&#125;&#125;&lt;/a&gt;&lt;/p&gt;"</span>,</div><div class="line">          <span class="attr">data</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">              <span class="keyword">return</span>&#123;</div><div class="line">                  <span class="attr">authorName</span>:<span class="string">'hello'</span>,</div><div class="line">                  <span class="attr">authorUrl</span>:<span class="string">'http://www.baidu.com'</span></div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">   <span class="keyword">new</span> hello().$mount(<span class="string">'#hello'</span>)</div></pre></td></tr></table></figure>
+<p><strong>vue.set 到底干嘛的</strong></p>
+<ul>
+<li>由于Javascript的限制，Vue不能自动检测以下变动的数组。</li>
+</ul>
+<ul>
+<li>当你利用索引直接设置一个项时，vue不会为我们自动更新。</li>
+<li>当你修改数组的长度时，vue不会为我们自动更新。</li>
+</ul>
+<p><strong>vue 生命周期</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">beforeCreate:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'1-beforeCreate 初始化之后'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">created</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'2-created 创建完成'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeMount</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'3-beforeMount 挂载之前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">mounted</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'4-mounted 被创建'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeUpdate</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'5-beforeUpdate 数据更新前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">updated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'6-updated 被更新后'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">activated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'7-activated'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">deactivated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'8-deactivated'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeDestroy</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'9-beforeDestroy 销毁之前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">destroyed</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'10-destroyed 销毁之后'</span>)</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/22/# vue 的全局 api /">展开全文 >></a>
         </p>
       
 
@@ -618,231 +777,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/07/hello Express/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-什么是HTTP ?" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是HTTP"><a href="#什么是HTTP" class="headerlink" title="什么是HTTP ?"></a>什么是HTTP ?</h1><h3 id="HTTP-协议简介"><a href="#HTTP-协议简介" class="headerlink" title="HTTP 协议简介"></a>HTTP 协议简介</h3><p>HTTP 是超文本传输协议 (Hyper Text Transfer Protocol)的缩写,用于 WWW 服务</p>
-<h3 id="HTTP的工作原理"><a href="#HTTP的工作原理" class="headerlink" title="HTTP的工作原理"></a>HTTP的工作原理</h3><p>HTTP是一个面向事务的客户服务器协议.尽管 HTTP使用TCP 作为底层传输协议,但是HTTP 协议是无状态的,也就是说,每个事务都是独立的进行处理.<strong>在浏览器和服务器之间的请求和响应的交互，必须遵循 HTTP 规定的格式和规则。</strong></p>
-<p>1 浏览器分析待访问页面的 URL 并向本地 DNS 服务器请求 IP 地解析;<br>2 DNS 服务器解析出该 HTTP 服务器的 IP 地址并将 IP 地址返回给浏览器;<br>3 浏览器与 HTTP 服务器建立 TCP 连接，若连接成功，则进入下一步;<br>4 浏览器向 HTTP 服务器发出请求报文 (含 GET 信息)，请求访问服务器的指定页面;<br>5 服务器作出响应，将浏览器要访问的页面发送给浏览器，在页面传输过程中，浏览器会打开多个端口，与服务器建立多个连接;</p>
-<p>6 释放 TCP 连接;</p>
-<p>7 浏览器收到页面并显示给用户。</p>
-<h3 id="HTTP-报文格式"><a href="#HTTP-报文格式" class="headerlink" title="HTTP 报文格式"></a>HTTP 报文格式</h3><p>HTTP 有两类报文:从客户到服务器的<strong>请求报文</strong>和从服务器到客户的<strong>响应报文</strong>.</p>
-<p>显示了两种报文的结构。</p>
-<pre><code>#### 请求报文(请求行 首部行[HTTP头],实体 )
-</code></pre><ol>
-<li><p>请求行</p>
-<ul>
-<li>方法字段，最常用的方法为 “GET”，表示请求读取一个万维网的页面。常用的方法还有 “HEAD(指读取页面的首部)”和“POST(请求接受所附加的信息);</li>
-<li>URL 字段为主机上的文件名，这时因为在建立 TCP 连接时已经有了主机名;</li>
-<li>版本字段说明所使用的 HTTP 协议的版本，一般为 “HTTP/1.1”。</li>
-</ul>
-</li>
-<li><p>首部行</p>
-<ul>
-<li>第一个字段等同请求行的第三字段;</li>
-<li>第二个字段一般为“200”，表示一切正常，状态码共有41种，常用的有:301 (网站已转移)，400(服务器无法理解请求报文)，404(服务器没有锁请求的对象)等;</li>
-<li>第三个字段时解释状态码的短语。</li>
-<li>根据具体情况，首部行的行数是可变的。请求首部有 Accept 字段，其值表示浏览器,可以接受何种类型的媒体;Accept-language，其值表示浏览器使用的语言;User-agent 表明可用的浏览器类型。响应首部中有 Date、Server、Content-Type、Content-Length 等字段。在请求首部和响应首部中都有 Connection 字段，其值为 Keep-Alive 或 Close，表示服务器在传送完所请求的对象后是保持连接或关闭连接</li>
-</ul>
-</li>
-<li><p>实体</p>
-<ul>
-<li><p>若请求报文中使用 “GET”方法，首部行后面没有实体主体.</p>
-</li>
-<li><p>当使用”POST”方法,附加的信息被填写在实体部分.</p>
-</li>
-<li><p>在相应报文中 ,实体主部分为服务器发给客户的对象.</p>
-</li>
-</ul>
-</li>
-</ol>
-<pre><code>​
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/18/什么是HTTP ?/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-NPM的使用方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="NPM的使用方法"><a href="#NPM的使用方法" class="headerlink" title="NPM的使用方法"></a>NPM的使用方法</h1><p>NPM 是随同 Node 一起安装的包管里工具。</p>
-<ul>
-<li>允许用户从NPM服务器下载别人编写的第三方包到本地使用。</li>
-<li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</li>
-<li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</li>
-</ul>
-<h2 id="1-模块初始化"><a href="#1-模块初始化" class="headerlink" title="1.模块初始化"></a>1.模块初始化</h2><p>创建模块，package.json 文件是必不可少的。我们可以使用 NPM 生成 package.json 文件，生成的文件包含了基本的结果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure>
-<p>以上的信息，你需要根据你自己的情况输入。在最后输入 “yes” 后会生成 package.json 文件。同时在这个 json 文件中可以在 script 字段定义我们自己的一些脚本。</p>
-<h2 id="2-使用-npm-命令安装模块"><a href="#2-使用-npm-命令安装模块" class="headerlink" title="2.使用 npm 命令安装模块"></a>2.使用 npm 命令安装模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install &lt;Module Name&gt;</div><div class="line"></div><div class="line">例如</div><div class="line">npm install express --save</div></pre></td></tr></table></figure>
-<p>这时，就会在我们的工程目录下生成一个 node_modules 的文件夹，在里边就会有 express 这个包了。</p>
-<p>如果想要用这个包，只需要在需要的地方 require 或者 import 一下就可以了。</p>
-<h3 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h3><p>将包安装在项目内的 <code>node_modules</code> 下，如果没有这个文件夹， npm 会自动创建。可以通过 <code>require()</code> 来引入项目内的包。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install express --save  # 版本名和版本号记录在dependencies字段</div><div class="line">npm install express --save-dev  # 版本名和版本号记录在devDependencies字段</div></pre></td></tr></table></figure>
-<h3 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h3><p>全局安装后可以直接在命令行里使用，不能在项目内引入。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 全局安装</div><div class="line">npm install gulp -g</div></pre></td></tr></table></figure>
-<p>可以使用以下命令来查看所有全局安装的模块：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm ls -g</div></pre></td></tr></table></figure>
-<h2 id="3-卸载模块"><a href="#3-卸载模块" class="headerlink" title="3.卸载模块"></a>3.卸载模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm uninstall express</div></pre></td></tr></table></figure>
-<h2 id="4-更新模块"><a href="#4-更新模块" class="headerlink" title="4.更新模块"></a>4.更新模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm update express</div></pre></td></tr></table></figure>
-<h2 id="5-搜索模块"><a href="#5-搜索模块" class="headerlink" title="5.搜索模块"></a>5.搜索模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm search express</div></pre></td></tr></table></figure>
-<h2 id="6-发布模块"><a href="#6-发布模块" class="headerlink" title="6.发布模块"></a>6.发布模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm publish</div></pre></td></tr></table></figure>
-<p>这里需要注意，发布模块的话需要在 npm 官网注册账号，并且执行下面的命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm adduser</div><div class="line">Username: demo</div><div class="line">Password:</div><div class="line">Email:(this is public) 977527479@qq.com</div></pre></td></tr></table></figure>
-<h2 id="7-其他常用命令"><a href="#7-其他常用命令" class="headerlink" title="7.其他常用命令"></a>7.其他常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm help</div><div class="line">npm cache clear  #可以清空NPM本地的缓存</div><div class="line">npm unpublish @[版本号]  #撤销发布的某个版本的模块</div></pre></td></tr></table></figure>
-<h2 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/NPM的使用方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Git和Github手册" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Git和Github基本操作手册"><a href="#Git和Github基本操作手册" class="headerlink" title="Git和Github基本操作手册"></a>Git和Github基本操作手册</h1><p>Git 及 Github 在工作学习中非常重要，它不仅仅是一个管理存放代码的仓库，更是一个开源的社区。学习Git及Github的操作是首要技能。<br><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">廖雪峰的 Git 教程</a></p>
-<p>额，文档整理的不一定完全准确，请酌情参考。</p>
-<h2 id="1-git-安装及默认设置"><a href="#1-git-安装及默认设置" class="headerlink" title="1.git 安装及默认设置"></a>1.git 安装及默认设置</h2><h3 id="安装-git"><a href="#安装-git" class="headerlink" title="安装 git"></a>安装 git</h3><p>在 linux 下直接使用命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install git</div></pre></td></tr></table></figure>
-<p>windows 下百度 gitbash ，下载安装即可。</p>
-<p>mac 下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install git</div></pre></td></tr></table></figure>
-<h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><p>配置个人的用户名称和电子邮件地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;newming&quot;</div><div class="line">git config --global user.email &quot;977527479@qq.com&quot;</div></pre></td></tr></table></figure>
-<p>可以查看已有的配置信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --list</div></pre></td></tr></table></figure>
-<h2 id="2-工作流程"><a href="#2-工作流程" class="headerlink" title="2.工作流程"></a>2.工作流程</h2><ul>
-<li>克隆 Git 仓库作为工作目录（或者自己新建一个工作目录并初始化为Git仓库）。</li>
-<li>增加资源及修改文件。</li>
-<li>提交修改。</li>
-<li>如果他人修改了代码，可以更新资源。</li>
-</ul>
-<h2 id="3-基本操作命令"><a href="#3-基本操作命令" class="headerlink" title="3.基本操作命令"></a>3.基本操作命令</h2><h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir demo &amp;&amp; cd demo</div><div class="line">git init</div></pre></td></tr></table></figure>
-<p>通过创建 demo 文件夹，<code>git init</code> 初始化，新建一个仓库。</p>
-<h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h3><p>如果在 github 上已经有了仓库，可以直接通过 <code>git clone</code> 将项目 <code>clone</code> 到本地。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone [仓库地址]</div></pre></td></tr></table></figure>
-<h3 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h3><p>查看做了哪些修改。按 <code>q</code> 退出。</p>
-<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p><code>git add</code> 可以将文件添加到缓存去，获得 Git 的跟踪。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch a.html</div><div class="line">git add a.html</div></pre></td></tr></table></figure>
-<p>也可以通过加参数，将所有的文件添加到缓存区。下面的三种方式效果相同。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git add -A</div><div class="line">git add *</div></pre></td></tr></table></figure>
-<h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p><code>git status</code> 可以查看当前版本库各个文件的状态。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
-<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p><code>git commit</code> 将缓存区内容添加到仓库中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &apos;版本留言，尽量写的语义话&apos;</div></pre></td></tr></table></figure>
-<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>查看提交记录。</p>
-<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>取消已经缓存的内容。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD</div></pre></td></tr></table></figure>
-<p>也可以通过版本号回滚</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard [版本号]</div></pre></td></tr></table></figure>
-<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>git rm 命令把一个文件删除，并把它从git的仓库管理系统中移除。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rm readme.md</div></pre></td></tr></table></figure>
-<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p>取消对某个文件的修改，通过 <code>git status</code> 查看状态，然后执行 <code>git checkout</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout 文件名</div></pre></td></tr></table></figure>
-<h2 id="3-推送代码"><a href="#3-推送代码" class="headerlink" title="3.推送代码"></a>3.推送代码</h2><p>首先，要在 github 上新建仓库，然后 clone 下来。</p>
-<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*首次推送*</div><div class="line">git push -u origin master</div><div class="line">*之后可以省略参数*</div><div class="line">git push</div></pre></td></tr></table></figure>
-<p>如果没有通过 clone 现有仓库，而是直接在本地 <code>git init</code> 的仓库的话，需要先添加远程仓库地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*为这个仓库添加一个远程地址*</div><div class="line">git remote add origin [你的github上的仓库地址]</div></pre></td></tr></table></figure>
-<p>但是这里还有个问题，就是每次 push 都需要输入用户名和密码，很麻烦。这里需要设置下 ssh 。</p>
-<h3 id="设置-public-key"><a href="#设置-public-key" class="headerlink" title="设置 public key"></a>设置 public key</h3><p>首先需要在本地机器上生成 key。执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen</div></pre></td></tr></table></figure>
-<p>这时，会在 ~/.ssh/ 文件夹之下生成一对 ssh key ，包括一个 public key 和一个 private key 。（如果是windows用户，这个文件一般会在这里：C:\Users\Administrator.ssh）</p>
-<p>复制 public key</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat  ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
-<p>将拷贝的 public key 添加在github账户上：</p>
-<blockquote>
-<p>右上角点击头像-&gt; 点击settings-&gt; 点击SSH KEYS-&gt; 点击ADD SSH KEYS-&gt; 将获取的public key粘贴于此</p>
-</blockquote>
-<h2 id="4-分支操作"><a href="#4-分支操作" class="headerlink" title="4.分支操作"></a>4.分支操作</h2><p>创建新分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch [yourbranch]</div></pre></td></tr></table></figure>
-<p>切换分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout [yourbranch]</div></pre></td></tr></table></figure>
-<p>或者直接创建一个分支，并且切换过去</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b [yourbranch]</div></pre></td></tr></table></figure>
-<p>删除分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d [yourbranch]</div></pre></td></tr></table></figure>
-<p>推送分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin [yourbranch]</div></pre></td></tr></table></figure>
-<h2 id="5-分支更新及合并"><a href="#5-分支更新及合并" class="headerlink" title="5.分支更新及合并"></a>5.分支更新及合并</h2><p>拉取主分支上的更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull origin master</div></pre></td></tr></table></figure>
-<p>合并其他分支代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git merge [otherbranch]</div></pre></td></tr></table></figure>
-<h2 id="6-结语"><a href="#6-结语" class="headerlink" title="6.结语"></a>6.结语</h2><p>额，不完整，不断补充。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/Git和Github手册/">展开全文 >></a>
         </p>
       
 

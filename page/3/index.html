@@ -151,6 +151,248 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-React 第二天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="React-第二天"><a href="#React-第二天" class="headerlink" title="React 第二天"></a>React 第二天</h1><p> node模块分类</p>
+<ul>
+<li><p>Node.js 核心模块 api</p>
+</li>
+<li><p>通过npm 安装的模块 (安装到项目文件夹下的node modules 下)</p>
+</li>
+<li><p>自己写的 js 文件 (用相对路径)</p>
+<ul>
+<li><p><code>var num =require(&#39;./b.js&#39;);</code></p>
+<p>​</p>
+<p><strong>npm使用</strong></p>
+<ul>
+<li><code>npm init</code> 初始化node 项目 ，生成 package.json ，记录项目的一些描述及依赖</li>
+<li><code>npm install</code> [包名]  –save|| –save-dev||-g<ul>
+<li><code>--save</code>  将包名记录到了 dependencies 字段下，通常我们项目上线之后仍然依赖的</li>
+<li><code>--save-dev</code> 可以缩写为 -D 将包名记录到了 devDependencies 字段下，通常我们项目开发时候依赖的上线不需要它的代码，比如一些打包工具</li>
+<li><code>-g</code> 将模块安装到我们的用户主目录下，通长安装的是一些需要它的脚本命令的，可以在任何地方使用它</li>
+</ul>
+</li>
+<li><code>npm install</code>   可以安装项目内package.json中记录的依赖</li>
+<li>WARN 警告 可以忽略</li>
+<li>Install uninstall[包名][-g] 卸载模块， <strong>注意手动删除 package.json</strong> 的记录</li>
+<li>.gitignore  过滤不想上传的文件</li>
+</ul>
+</li>
+<li><p>安装React</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g create-react-app</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">create-react-app my-app</div><div class="line">cd my-app／</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>package.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;mytest&quot;,      项目名字</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,    版本号</div><div class="line">  &quot;description&quot;: &quot;&quot;,     描述</div><div class="line">  &quot;main&quot;: &quot;a.js&quot;,        入口文件</div><div class="line">  &quot;dependencies&quot;: &#123;&#125;,    依赖 --save （不要多空格）</div><div class="line">  &quot;devDependencies&quot;: &#123;&#125;, 开发依赖。</div><div class="line">  &quot;scripts&quot;: &#123;            可以自定义脚本</div><div class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</div><div class="line">    &quot;test1&quot;:&quot;node -v&quot;   自定义的脚本</div><div class="line">    </div><div class="line">  &#125;,</div><div class="line">  &quot;repository&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;git&quot;,</div><div class="line">    &quot;url&quot;: &quot;git+https://github.com/monkeyone1/TestDemo.git&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;author&quot;: &quot;&quot;,</div><div class="line">  &quot;license&quot;: &quot;ISC&quot;,</div><div class="line">  &quot;bugs&quot;: &#123;</div><div class="line">    &quot;url&quot;: &quot;https://github.com/monkeyone1/TestDemo/issues&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;homepage&quot;: &quot;https://github.com/monkeyone1/TestDemo#readme&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/React 第二天/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-React 第三天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="React-第三天"><a href="#React-第三天" class="headerlink" title="React 第三天"></a>React 第三天</h1><h2 id="ES6快速入门"><a href="#ES6快速入门" class="headerlink" title="ES6快速入门"></a>ES6快速入门</h2><p>   <a href="http://babeljs.io/" target="_blank" rel="external"><em>Bable</em></a>  把SE6 语法  转换成阅览器可执行的ES5</p>
+<p>   ES6 语法</p>
+<ul>
+<li><p><code>let</code>块级声明 作用域{}中 相比 var 不会变量提升 （被Bable 编译后还会变成var；</p>
+</li>
+<li><p><code>const</code>  常量 只读  对象属性和方法可以改</p>
+</li>
+<li><p>解构赋值 </p>
+<ul>
+<li>变量 <code>let [a,b,c]=[20,10,12];</code>  如果缺少值得，会根据数组下标；</li>
+<li>对象<code>let {foo,bar}={bar:&quot;bbb&quot;,foo:&quot;aaa&quot;}</code>    根据key来赋值value<ul>
+<li><code>let {age,name}=obj</code>  自动找 obj 中的属性并赋值</li>
+<li><code>let  obj={name,age}</code>    作用域中有和value名相同的变量  对象的key和value 相同 可以省略 value</li>
+</ul>
+</li>
+<li>字符串 <code>let[a,b,c,d,e=&#39;hello&#39;];</code>  对应下标分别赋值给各个变量 </li>
+</ul>
+</li>
+<li><p>Arrows箭头函数 </p>
+<ul>
+<li><code>()=&gt;{}||x=&gt;x-10</code>匿名函数没有参数或多个必须写小括号  只有一个参数可以省略小括号</li>
+<li><code>let add=(x,y)=&gt;x+y; console.log(add(1,2));</code> 单个箭头 默认不用写return；</li>
+<li><code>let add=(x,y)=&gt;{console.log(x);console.log(y);return x+y}</code> 多条语句需要用大括号 <strong>{}</strong>包裹并且得写<strong>return</strong>；</li>
+<li><code>let a1=(x,y)=&gt;({age:x+y});</code>  如果返回的值是对象的话，需要用 小括号<strong>（）</strong> 包起来里面写 大括号 <strong>{}</strong></li>
+<li>箭头函数完全修复了<code>this</code>的指向，<code>this</code>总是指向词法作用域</li>
+</ul>
+</li>
+<li><p>模板字符串 </p>
+<ul>
+<li><p>用反引号包裹  ${itme} </p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(`$&#123;name1&#125;`);</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>函数的方法</p>
+<ul>
+<li><p>默认值绑定</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function say (name=&apos;zzD&apos;,age=22) &#123;</div><div class="line">    console.log(name,age);</div><div class="line">    // body</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组操作</p>
+<ul>
+<li><p>map</p>
+<ul>
+<li><p>会重新的返回一个新的数组</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let news =[</div><div class="line">  &#123;title:&apos;今天天气真好&apos;, author:&apos;zzd&apos;&#125;,</div><div class="line">  &#123;title:&apos;今天天气真好&apos;, author:&apos;zzd&apos;&#125;,</div><div class="line">  &#123;title:&apos;今天天气真好&apos;, author:&apos;zzd&apos;&#125;];</div><div class="line"></div><div class="line">let newList =news.map(item=&gt;item.title);</div><div class="line">console.log(newList);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​</p>
+</li>
+<li><p>…rest </p>
+<ul>
+<li><p>… 可以替代 arguments   a只接受第一个字符,多余的赋值给rest</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function methodName (a,...rest) &#123;</div><div class="line">    console.log(a);</div><div class="line">    console.log(rest);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>展开操作符</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let a =[1,2,3];</div><div class="line">let b =[4,5,6];</div><div class="line">let c= [...a,...b];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>forEach 和 map的区别    </p>
+<ul>
+<li><code>forEach</code>不会返回新的数组在原先数组中修改</li>
+<li><code>map</code>会产生新的数组 </li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/React 第三天/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-React 第一天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="React-第一天"><a href="#React-第一天" class="headerlink" title="React 第一天"></a>React 第一天</h1><p><strong>安装环境</strong></p>
+<ul>
+<li>curl  ``</li>
+<li>nvm <code>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash</code></li>
+<li>atom/vscode</li>
+<li>npm/cnpm </li>
+<li>Homebrew</li>
+<li>node.js</li>
+<li>-shell<ul>
+<li>cp 拷贝</li>
+</ul>
+</li>
+<li><p>git</p>
+<ul>
+<li><code>git config --global user.name  git config --global user.email</code>  用户名称和电子邮件地址</li>
+<li><code>git init</code>  初始化仓库</li>
+<li><code>git remote add origin git@github.com:monkeyone1/TestDemo.git</code>  指定ssh地址或https</li>
+<li><code>git clone</code>  地址</li>
+<li>干活/搬砖</li>
+<li><code>git add .(添加全部)||git -A</code>  提交缓存</li>
+<li><code>git commit -m &#39;description&#39;</code> 提交</li>
+<li><code>git pull</code> 同步 <strong>最好先同步在推送防止不必要的冲突</strong></li>
+<li><code>git push</code> 推送</li>
+<li><code>git push -u origin master</code>  第一次提交指定主分支（master）</li>
+</ul>
+</li>
+<li>这是一个有趣的一天</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/React 第一天/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-React 八天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
