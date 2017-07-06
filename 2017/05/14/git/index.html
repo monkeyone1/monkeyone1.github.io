@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/5 | ZZ:D</title>
+  <title>ZZ:D</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="基本命令12345678910111213141516171819202122232425262728293031323334353637383940414243444546# 安装Git$ sudo apt install git# 配置个人信息$ git config --global user.name &amp;quot;Your Name&amp;quot;$ git config --global u">
+<meta property="og:type" content="article">
 <meta property="og:title" content="ZZ:D">
-<meta property="og:url" content="http://yoursite.com/archives/2017/05/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/05/14/git/index.html">
 <meta property="og:site_name" content="ZZ:D">
+<meta property="og:description" content="基本命令12345678910111213141516171819202122232425262728293031323334353637383940414243444546# 安装Git$ sudo apt install git# 配置个人信息$ git config --global user.name &amp;quot;Your Name&amp;quot;$ git config --global u">
+<meta property="og:updated_time" content="2017-07-06T02:47:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZZ:D">
+<meta name="twitter:description" content="基本命令12345678910111213141516171819202122232425262728293031323334353637383940414243444546# 安装Git$ sudo apt install git# 配置个人信息$ git config --global user.name &amp;quot;Your Name&amp;quot;$ git config --global u">
   
     <link rel="alternative" href="/atom.xml" title="ZZ:D" type="application/atom+xml">
   
@@ -149,235 +153,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-git" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"># 安装Git</div><div class="line">$ sudo apt install git</div><div class="line"></div><div class="line"># 配置个人信息</div><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email &quot;email@example.com&quot;</div><div class="line"></div><div class="line"># 切换目录初始化</div><div class="line">$ git init</div><div class="line"></div><div class="line"># 文件添加到仓库</div><div class="line">$ git add -p &lt;file&gt;</div><div class="line">#  把远程最新的内容同步</div><div class="line">$ git pull = git fetch + git merge  </div><div class="line">$ git pull --rebase = git fetch + git rebase  //推荐用 git pull -r</div><div class="line"># 把文件提交到仓库</div><div class="line">$ git commit -m &quot;add LICENSE&quot;</div><div class="line"></div><div class="line"># 查看仓库当前状态</div><div class="line">$ git status</div><div class="line"></div><div class="line"># 查看difference</div><div class="line">$ git diff</div><div class="line"></div><div class="line"># 显示从最近到最远的提交日志</div><div class="line">$ git log --pretty=oneline # 格式化输出信息</div><div class="line"></div><div class="line"># 版本退回</div><div class="line">$ git reset --hard HEAD^ # 当前版本HEAD,上一个版本HEAD^,上上个版本HEAD^^</div><div class="line">$ git reset --hard 130f10a # 或HEAD~100</div><div class="line"></div><div class="line"># 查看命令记录</div><div class="line">$ git reflog</div><div class="line"></div><div class="line"># 丢弃工作区的修改，回到最近一次git commit或git add时的状态：</div><div class="line">$ git checkout -- README.md</div><div class="line"></div><div class="line"># 把暂存区的修改撤销掉（unstage）</div><div class="line">$ git reset HEAD READER.md</div><div class="line"></div><div class="line"># 从版本库中删除该文件</div><div class="line">$ git rm README.md</div><div class="line">$ git commit -m &quot;remove READER.md&quot;</div><div class="line"></div><div class="line"># 把误删的文件恢复到最新版本，checkout其实用版本库里的版本替换工作区的版本</div><div class="line">$ git checkout -- README.md</div></pre></td></tr></table></figure>
+<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</div><div class="line"># 测试是否成功</div><div class="line">$ ssh -T git@github.com</div><div class="line"></div><div class="line"># 把一个已有的本地仓库与之关联</div><div class="line">$ git remote add origin git@github.com:monkeyone1/doc.git</div><div class="line"></div><div class="line"># 把本地库的所有内容推送到远程库上（推送master分支的内容）</div><div class="line">$ git push -u origin master</div><div class="line"></div><div class="line"># 向远程库推送更新</div><div class="line">$ git push origin master</div><div class="line"></div><div class="line"># 从远程库克隆</div><div class="line">$ git clone git@github.com:michaelliao/gitskills.git</div></pre></td></tr></table></figure>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"># 创建+切换dev分支</div><div class="line">$ git checkout -b dev</div><div class="line"></div><div class="line"># 相当于</div><div class="line">$ git branch dev # 创建分支</div><div class="line">$ git checkout dev</div><div class="line"></div><div class="line"># 查看当前分支，当前分支前面标有×号</div><div class="line">$ git branch</div><div class="line"></div><div class="line"># 切换回master分支</div><div class="line">$ git checkout master</div><div class="line"></div><div class="line"># 合并指定分支到当前分支</div><div class="line">$ git merge dev</div><div class="line"></div><div class="line"># 删除dev分支</div><div class="line">$ git branch -d dev</div><div class="line"></div><div class="line"># 查看分支合并情况</div><div class="line">$ git log --graph --pretty=oneline --abbrev-commit</div><div class="line">*   59bc1cb conflict fixed</div><div class="line">|\</div><div class="line">| * 75a857c AND simple</div><div class="line">* | 400b400 &amp; simple</div><div class="line">|/</div><div class="line">* fec145a branch test</div><div class="line"></div><div class="line"># 删除feature1分支</div><div class="line">$ git branch -d feature1</div><div class="line"></div><div class="line"># 创建并切换dev分支</div><div class="line">$ git checkout -b dev</div><div class="line"></div><div class="line"># 修改readme.txt文件，并提交一个新的commit</div><div class="line">$ git add readme.txt</div><div class="line">$ git commit -m &quot;add merge&quot;</div><div class="line"></div><div class="line"># 切换回master</div><div class="line">$ git checkout master</div><div class="line"></div><div class="line"># 合并dev分支，请注意--no-ff参数，表示禁用Fast forward</div><div class="line">$ git merge --no-ff -m &quot;merge with no-ff&quot; dev</div><div class="line"></div><div class="line"># 看看分支历史</div><div class="line">$ git log --graph --pretty=oneline --abbrev-commit</div><div class="line">*   7825a50 merge with no-ff</div><div class="line">|\</div><div class="line">| * 6224937 add merge</div><div class="line">|/</div><div class="line">*   59bc1cb conflict fixed</div><div class="line"></div><div class="line"># 如果需要临时修复Bug，可以把当前工作现场“储藏”起来，等Bug修复后恢复现场后继续工作</div><div class="line">$ git stash</div><div class="line"></div><div class="line"># 此时查看工作区是干净</div><div class="line"># 切换到需要修复Bug的分支，创建临时分支来修复</div><div class="line">$ git checkout master</div><div class="line">$ git checkout -b issue-101</div><div class="line"></div><div class="line"># 修复完成后切换到master分支，完成合并，删除临时分支</div><div class="line">$ git checkout master</div><div class="line">$ git merge --no-ff -m &quot;merged bug fix 101&quot; issue-101</div><div class="line">$ git branch -d issue-101</div><div class="line"></div><div class="line"># Bug修复后，切换回dev分支继续干活</div><div class="line">$ git checkout dev</div><div class="line"></div><div class="line"># 查看工作现场列表</div><div class="line">$ git stash list</div><div class="line"></div><div class="line"># 恢复工作现场</div><div class="line">$ git stash pop # 恢复的同时把stash内容也删了</div><div class="line">$ git stash apply # 恢复，不删除stash的内容，使用git stash drop</div><div class="line"></div><div class="line"># 再次查看工作现场列表，干净</div><div class="line">$ git stash list</div><div class="line"></div><div class="line"># 可以多次stash，恢复时指定恢复</div><div class="line">$ git stash apply stash@&#123;0&#125;</div><div class="line"></div><div class="line"># 强行删除一个没有合并过的分支</div><div class="line">$ git branch -D &lt;name&gt;</div><div class="line"></div><div class="line"># 要查看远程库的信息</div><div class="line">$ git remote</div><div class="line">$ git remote -v</div><div class="line"></div><div class="line"># 推送其他分支</div><div class="line">$ git push origin dev</div><div class="line"></div><div class="line"># 从远程库clone，默认情况只能看到master分支，需要在dev分支，必须创建远程origin的dev分支到本地</div><div class="line">$ git checkout -b dev origin/dev</div><div class="line">$ git checkout -b branch-name origin/branch-name</div><div class="line">$ git branch --set-upstream branch-name origin/branch-name # 关联</div><div class="line"></div><div class="line"># 向远程库推送dev有冲突</div><div class="line">$ git pull # 抓取到本地合并解决冲突，再向远程推送</div><div class="line">$ git push origin dev</div></pre></td></tr></table></figure>
+<h2 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"># 切换到需要打标签的分支</div><div class="line">$ git branch</div><div class="line">$ git checkout master</div><div class="line"></div><div class="line"># 创建标签</div><div class="line">$ git tag v1.0</div><div class="line"></div><div class="line"># 查看所有标签</div><div class="line">$ git tag</div><div class="line"></div><div class="line"># 给历史提高的commit id打标签</div><div class="line">$ git log --pretty=oneline --abbrev-commit # 查看commit id</div><div class="line">$ git tag v0.9 6224937</div><div class="line"></div><div class="line"># 查看标签信息</div><div class="line">$ git show v0.9</div><div class="line"></div><div class="line"># 创建带有说明的标签</div><div class="line">$ git tag -a v0.1 -m &quot;version 0.1 released&quot; 3628164</div><div class="line"></div><div class="line"># 用PGP签名标签</div><div class="line">$ git tag -s &lt;tagname&gt; -m &quot;blablabla...&quot;</div><div class="line"></div><div class="line"># 推送某个标签到远程</div><div class="line">$ git push origin v1.0</div><div class="line"></div><div class="line"># 一次性推送全部尚未推送到远程的本地标签</div><div class="line">$ git push origin --tags</div><div class="line"></div><div class="line"># 删除远程标签</div><div class="line">$ git tag -d v0.9 # 删除本地</div><div class="line">$ git push origin :refs/tags/v0.9 # 删除远程</div></pre></td></tr></table></figure>
+<h2 id="自定义-Git"><a href="#自定义-Git" class="headerlink" title="自定义 Git"></a>自定义 Git</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 显示颜色，会让命令输出看起来更醒目</div><div class="line">$ git config --global color.ui true</div><div class="line"></div><div class="line"># 忽略某些文件时，需要编写.gitignore，然后将.gitignore放到版本库中</div><div class="line"># st就表示status</div><div class="line">$ git config --global alias.st status</div><div class="line"></div><div class="line"># 配置一个unstage别名</div><div class="line">$ git config --global alias.unstage &apos;reset HEAD&apos;</div><div class="line">$ git unstage test.py # 等价于</div><div class="line">$ git reset HEAD test.py</div><div class="line"></div><div class="line"># 显示最后一次提交信息</div><div class="line">$ git config --global alias.last &apos;log -1&apos;</div><div class="line"></div><div class="line"># log</div><div class="line">git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot;</div><div class="line"># 每个仓库的配置文件放在.git/config</div><div class="line"># 当前用户的配置文件放在用户主目录下的一个隐藏文件.gitconfig中</div></pre></td></tr></table></figure>
+<h2 id="解决-Git同步冲突"><a href="#解决-Git同步冲突" class="headerlink" title="解决 Git同步冲突"></a>解决 Git同步冲突</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">1、先将本地修改存储起来</div><div class="line">　　$ git stash</div><div class="line"></div><div class="line">　　这样本地的所有修改就都被暂时存储起来 。是用git stash list可以看到保存的信息：</div><div class="line"></div><div class="line">　　git stash暂存修改</div><div class="line">　　其中stash@&#123;0&#125;就是刚才保存的标记。</div><div class="line">　　2、pull内容</div><div class="line">　　暂存了本地修改之后，就可以pull了。</div><div class="line">　　$ git pull</div><div class="line"></div><div class="line">　　3、还原暂存的内容</div><div class="line">　　$ git stash pop stash@&#123;0&#125;</div></pre></td></tr></table></figure>
+<h2 id="搭建-Git-服务器"><a href="#搭建-Git-服务器" class="headerlink" title="搭建 Git 服务器"></a>搭建 Git 服务器</h2><ol>
+<li>安装 git：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install git</div></pre></td></tr></table></figure>
+<ol>
+<li>创建一个 git 用户，用来运行 git 服务：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo adduser git</div></pre></td></tr></table></figure>
+<ol>
+<li>创建证书登录：收集所有需要登录的用户的公钥，就是他们自己的 id_rsa.pub 文件，把所有公钥导入到 /home/git/.ssh/authorized_keys 文件里，一行一个</li>
+<li>初始化 Git 仓库：</li>
+</ol>
+<p># 选定一个目录作为 Git 仓库，假定是 /srv/sample.git，在 /srv 目录下输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo git init --bare sample.git</div><div class="line"># 把 owner 改为 git</div><div class="line">$ sudo chown -R git:git sample.git</div></pre></td></tr></table></figure>
+<ol>
+<li>禁用 shell 登录：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 编辑/etc/passwd文件</div><div class="line">git:x:1001:1001:,,,:/home/git:/bin/bash # 修改成下面的内容</div><div class="line">git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell</div></pre></td></tr></table></figure>
+<ol>
+<li>克隆远程仓库，在各自的电脑上运行：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone git@server:/srv/sample.git</div></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/18/什么是HTTP ?/" class="archive-article-date">
-  	<time datetime="2017-05-18T09:26:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-18</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/14/git/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/14/git/" class="archive-article-date">
-  	<time datetime="2017-05-14T07:02:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/NPM的使用方法/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/05/18/什么是HTTP ?/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/10/NPM的使用方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/Git和Github手册/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/Nodejs安装配置/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/jsconfig升级版/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/webpack 的基本使用/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React  第七天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第 九 天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/10/React 第四天/" class="archive-article-date">
-  	<time datetime="2017-05-10T05:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/05/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/05/page/2/">Next &raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -401,8 +328,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
