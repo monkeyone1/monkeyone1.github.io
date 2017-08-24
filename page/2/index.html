@@ -151,6 +151,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mongodb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h1><h3 id="mongodb-1"><a href="#mongodb-1" class="headerlink" title="mongodb"></a>mongodb</h3><p><em>MongoDB</em> 是一个基于分布式文件存储的数据库,  MongoDB 是非关系型数据库，传统的关系型数据库的 table （表）和 record （记录），在 MongoDB 这里都有对应的替代物。</p>
+<ul>
+<li>MongoDB：是一个数据库软件，有时候我们简称它叫一个数据库，但是其实一个 MongoDB 运行起来，可以里面同时运行多个数据库</li>
+<li>Database: 数据库。一般做法是，一个项目对应一个数据库。</li>
+<li>Collection: 集合。类似于关系型数据库下的<em>表</em>的概念，例如全班同学信息。</li>
+<li>Document：文档。一个集合中会包含多个文档（一个文档中存储一个同学的信息）。</li>
+</ul>
+<p><strong>安装</strong></p>
+<p>用HomeBrew 安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">berw install mongodb</div></pre></td></tr></table></figure>
+<p>Mongodb 创建仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p data/db   </div><div class="line">mongod --dbpath =./data/db</div></pre></td></tr></table></figure>
+<p> —dbpath 数据库的路径</p>
+<p><strong>启动</strong></p>
+<p>在命令终端中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo</div></pre></td></tr></table></figure>
+<p>这样进入mongo的命令行界面输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; use  express-api</div><div class="line">switched to db express-api</div></pre></td></tr></table></figure>
+<p><code>switched to db express-api</code>  表示已经切换到 express-api 的数据库了</p>
+<p>查看所有数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show dbs</div><div class="line">show collections</div></pre></td></tr></table></figure>
+<p> 此时此刻 没有发现新建的数据库 因为 没有数据保存到数据库</p>
+<p>我们来创建一个集合 名字叫做users.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span> db.createCollection('users')</div><div class="line">&#123; "ok" : 1 &#125;</div></pre></td></tr></table></figure>
+<p>建立成功</p>
+<p>存入一个数据把</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span> db.users.insert(&#123;username:'zzd',email:'startzzd@163.com'&#125;)</div><div class="line">WriteResult(&#123; "nInserted" : 1 &#125;)</div></pre></td></tr></table></figure>
+<p>输出结果 <code>WriteResult({ &quot;nInserted&quot; : 1 })</code> 表述成功写入一条数据。</p>
+<p>查找数据 <code>db.users.find()</code></p>
+<p>增加数据<code>db.users.insert({username:&#39;hello&#39;})</code></p>
+<p>更改数据<code>db.users.update({_id:&#39;123&#39;},{username:&#39;hello&#39;})</code> 查询条件 更改内容</p>
+<p>删除数据 <code>db.users.remove({_id: })</code></p>
+<h1 id="Express-操作-MongoDB"><a href="#Express-操作-MongoDB" class="headerlink" title="Express 操作 MongoDB"></a>Express 操作 MongoDB</h1><p>通过mongoose npm包 链接 mongodb;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>); 导入</div><div class="line"></div><div class="line">连接数据库, 连接数据库成功打印  success!</div><div class="line"><span class="keyword">const</span> db = mongoose.connection;</div><div class="line">db.on(<span class="string">'error'</span>, <span class="built_in">console</span>.log);</div><div class="line">db.once(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success!'</span>)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这里的 <a href="http://mongoosejs.com/docs/api.html#connection_Connection" target="_blank" rel="external">mongoose.connection</a> 会映射到数据库 <code>express-api</code>，若此时 MongoDB 数据库没有启动，则运行本项目的话，在命令行中会报告错误信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123; [MongoError: failed to connect to server [localhost:<span class="number">27017</span>] on first connect]</div><div class="line">  name: <span class="string">'MongoError'</span>,</div><div class="line">  <span class="attr">message</span>: <span class="string">'failed to connect to server [localhost:27017] on first connect'</span> &#125;</div></pre></td></tr></table></figure>
+<p>新建一个文件夹<code>models/post.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</div><div class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</div></pre></td></tr></table></figure>
+<p>导入 <code>mongoose</code> 功能模块以及调用它提供的 <a href="http://mongoosejs.com/docs/api.html#index_Mongoose-Schema" target="_blank" rel="external">Schema()</a> 接口创建一个新的 <a href="http://mongoosejs.com/docs/guide.html" target="_blank" rel="external">schema</a>，每个 schema 会映射为 MongoDB 数据库中的一个 collection（集合），同时还能定义所映射集合包含的字段，以及字段的类型等规范。下面代码就创建了一个名为 <code>PostSchema</code> 的 schema, 并规定所映射的集合将包含三个字段：category、title 和 content，并且每个字段只能存储字符串类型的数据，其中 <code>title</code>字段中存储的数据不能为空。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PostSchema = <span class="keyword">new</span> Schema(</div><div class="line">  &#123;</div><div class="line">    <span class="attr">category</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;,</div><div class="line">    <span class="attr">title</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span> &#125;,</div><div class="line">    <span class="attr">content</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;</div><div class="line">  &#125;,</div><div class="line">  &#123; <span class="attr">timestamps</span>: <span class="literal">true</span> &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>选项 <a href="http://mongoosejs.com/docs/guide.html#timestamps" target="_blank" rel="external">timestamps</a> 的值设置为 <code>true</code>，则自动给所映射集合添加 <code>createdAt</code> 和 <code>updatedAt</code> 两个字段。</p>
+<p>虽然定义了一个 schema，但是 Mongoose 还不知道这个 schema 到底映射成数据库中的哪个集合，所以还得把一个 schema 转换成一个 <a href="http://mongoosejs.com/docs/models.html" target="_blank" rel="external">model</a> 之后，根据 model 的名字，Mongoose 会自动查找到这个 schema 在数据库中对应的集合。</p>
+<p>最后导出</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Post'</span>, PostSchema);</div></pre></td></tr></table></figure>
+<p>通过 Mongoose 的 <a href="http://mongoosejs.com/docs/api.html#index_Mongoose-model" target="_blank" rel="external">model()</a> 方法把一个 schema 编译成一个 model，一个 model 实例会对应映射集合中的一条记录，这个 <code>model()</code> 方法的第一个参数 <code>Post</code> 则是映射集合名字的单数形式，所以 <code>PostSchema</code> 映射集合的名字是 <code>posts</code>。上述代码还把构建成的 Post Model 导出供外部其它文件使用。</p>
+<p>插入一条数据 在index 中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Post = <span class="built_in">require</span>(<span class="string">'./models/post'</span>)</div><div class="line"></div><div class="line">db.once(<span class="string">'open'</span>, ()=&gt; &#123;</div><div class="line">  <span class="keyword">let</span> post = <span class="keyword">new</span> Post(&#123;<span class="attr">title</span>: <span class="string">'mongoose usage'</span>&#125;)</div><div class="line">  post.save(<span class="function">(<span class="params">err</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">if</span>(err) <span class="built_in">console</span>.log(err)</div><div class="line">  &#125;)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success!'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>首先导入 Post model，然后创建一个新的 model 实例 <code>post</code>，其对应 <code>posts</code> 集合中的一条记录，最后数据保存到数据库。</p>
+<p>注意：因为使用了异步操作方法 <a href="http://mongoosejs.com/docs/api.html#model_Model-save" target="_blank" rel="external">save()</a> 导致在终端报告警告信息</p>
+<p> 解决办法是在连接 MongoDB 数据库 <code>mongoose.connect(...);</code> 之前，添加一行代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongoose.Promise = global.Promise</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/12/mongodb/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-hello Express" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -718,85 +801,9 @@
 
 
   
-    <article id="post-React 第 九 天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="React-第-八-天"><a href="#React-第-八-天" class="headerlink" title="React 第 八 天"></a>React 第 八 天</h1><p> <strong>react-router</strong> </p>
-<p> 下载react-router</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-router --save</div></pre></td></tr></table></figure>
-<p> 一个简单的小Demo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123; Router, Route, browserHistory,IndexRoute, Redirect &#125; from &apos;react-router&apos;;</div><div class="line"></div><div class="line"></div><div class="line">lass Routers extends Component &#123;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;Router history=&#123;browserHistory&#125;&gt;</div><div class="line">        &lt;Route path=&quot;/&quot; component=&#123;Home&#125;&gt;</div><div class="line">          &lt;IndexRoute component=&#123;App&#125; onLeave=&#123;leaveAlert&#125;/&gt;</div><div class="line">          &lt;Route path=&quot;about&quot; component=&#123;About&#125; /&gt;</div><div class="line">          &lt;Route path=&quot;blog/:title&quot; component=&#123;Blog&#125; /&gt;</div><div class="line">          &lt;Route path=&quot;work&quot; component=&#123;Work&#125; onEnter=&#123;checkAdmin&#125;&gt;</div><div class="line">            &lt;Route path=&quot;detail&quot; component=&#123;Detail&#125; /&gt;</div><div class="line">          &lt;/Route&gt;</div><div class="line">          &#123;/* &lt;Route path=&quot;*&quot; component=&#123;NotFound&#125; /&gt; */&#125;</div><div class="line">          &lt;Route path=&quot;404&quot; component=&#123;NotFound&#125; /&gt;</div><div class="line">          &lt;Redirect from=&apos;aboutme&apos; to=&apos;about&apos; /&gt;</div><div class="line">          &lt;Redirect from=&apos;*&apos; to=&apos;404&apos; /&gt;</div><div class="line">        &lt;/Route&gt;</div><div class="line">      &lt;/Router&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default Routers;</div></pre></td></tr></table></figure>
-<p>这个小Dome 是react-route 最常用的方法</p>
-<p>导入的组件</p>
-<ul>
-<li><code>Router</code>  组件本身只是个容器 可以有属相 <code>history</code>分别有三个参数:<ul>
-<li><code>browserHistory</code>   这个需要服务器支持 不再通过Hash 完成,浏览器会调用HIstoty API.</li>
-<li><code>hashHistory</code>   路由将通过url 的hash部分(#),例如<code>hello.com/#/home</code></li>
-<li><code>createMemoryHistory</code>  用于服务器渲染, 会在内存中创建History 对象,不再和浏览器url互动</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><code>Route</code>  组件定义了url组件的对应的关心 ,你可以同时使用多个路由并且可以嵌套</p>
-<ul>
-<li><p><code>path</code> :代表用户访问的路径</p>
-</li>
-<li><p><code>component</code> :  用户访问这个路径的时候, 目的地址是个React的组件</p>
-</li>
-<li><p>路由钩子 每个路由都有 <code>onEnter</code>和<code>onLeave</code>钩子, 用户进入或离开的时候会触发(可以来做用户权限)</p>
-</li>
-<li><p>路由变量: <code>&lt;Route path=&quot;blog/:title&quot; component={Blog} /&gt;</code> 其中<code>:title</code>就是一个路由变量可通过<code>this.props.params.title</code>  来获取参数</p>
-<p>​</p>
-</li>
-</ul>
-</li>
-<li><p><code>IndexRoute</code> 组件</p>
-</li>
-<li><p><code>Redirect</code> 用于路由的跳转，即用户访问一个路由</p>
-</li>
-<li><p><code>Link</code>   是react-router 提供的组件 ，可以直接使用软件路由 （可以理解react 中的<code>a</code>标签  ）</p>
-<ul>
-<li><p><code>activeStyle</code></p>
-</li>
-<li><p><code>activeClassName</code></p>
-<p>​</p>
-</li>
-</ul>
-<p>​</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/React 第 九 天/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 

@@ -151,45 +151,62 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-查看室友都在干什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-使用  nmap 扫描" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/13/查看室友都在干什么/">title</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/13/查看室友都在干什么/" class="archive-article-date">
-  	<time datetime="2017-08-13T11:47:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ol>
-<li>电脑 kali linux</li>
-<li>2.Nmap  网络扫描和嗅探工具包</li>
-<li>Ettercap   arp诈骗 或者用 Arpspoof -</li>
-<li>driftnet  图片捕获</li>
-</ol>
-<ol>
-<li><p><code>ifconfig</code>查看是 waln0还是 eth0</p>
+        <h2 id="使用-nmap-扫描"><a href="#使用-nmap-扫描" class="headerlink" title="使用  nmap 扫描"></a>使用  nmap 扫描</h2><p>进行ping扫描，打印出对扫描做出响应的主机：　　</p>
+<p>$ nmap -sP 192.168.1.0/24　　</p>
+<p>仅列出指定网络上的每台主机，不发送任何报文到目标主机：　</p>
+<p>$ nmap -sL 192.168.1.0/24　　</p>
+<p>探测目标主机开放的端口，可以指定一个以逗号分隔的端口列表(如-PS 22，23，25，80)：　　</p>
+<p>$ nmap -PS 192.168.1.234　　</p>
+<p>使用UDP ping探测主机：</p>
+<p>$ nmap -PU 192.168.1.0/24　　</p>
+<p>使用频率最高的扫描选项（SYN扫描,又称为半开放扫描），它不打开一个完全的TCP连接，执行得很快：　</p>
+<p>$ nmap -sS 192.168.1.0/24</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/24/使用  nmap 扫描/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-用mac 看看邻居都在干什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="用mac-看看邻居都在干什么"><a href="#用mac-看看邻居都在干什么" class="headerlink" title="用mac 看看邻居都在干什么"></a>用mac 看看邻居都在干什么</h2><ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install aircrack-ng  // 安装aircrack-ng</div></pre></td></tr></table></figure>
 </li>
-<li><p><code>ettercap -i wlan0 -Tq -m arp:remote /192.167...//网关/</code></p>
+<li><p>使用<strong>mac</strong>系统自带的<strong>airport</strong>工具， 查看当前的无线网络， 以及它们的相关信息，在<strong>shell</strong>中执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s</div></pre></td></tr></table></figure>
+<p>​</p>
 </li>
-<li><p>或者 <code>Arpspoof -I eth0 -t 192.168.1.1 (网关) 192.168.1.100(被观察)</code></p>
-<ul>
-<li>如果是有线网络那就eth0  无线就waln0</li>
-</ul>
-</li>
-<li><p><code>driftnet -i wlan0  -b</code></p>
-<p>然后可以愉快的看看了</p>
-<p><img src="/Users/zzd/Desktop/default.png" alt="default"></p>
+<li><p>开始抓包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport en0 sniff 6</div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 </ol>
@@ -205,7 +222,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/13/查看室友都在干什么/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/21/用mac 看看邻居都在干什么/">展开全文 >></a>
         </p>
       
 
@@ -706,92 +723,9 @@
 
 
   
-    <article id="post-mongodb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h1><h3 id="mongodb-1"><a href="#mongodb-1" class="headerlink" title="mongodb"></a>mongodb</h3><p><em>MongoDB</em> 是一个基于分布式文件存储的数据库,  MongoDB 是非关系型数据库，传统的关系型数据库的 table （表）和 record （记录），在 MongoDB 这里都有对应的替代物。</p>
-<ul>
-<li>MongoDB：是一个数据库软件，有时候我们简称它叫一个数据库，但是其实一个 MongoDB 运行起来，可以里面同时运行多个数据库</li>
-<li>Database: 数据库。一般做法是，一个项目对应一个数据库。</li>
-<li>Collection: 集合。类似于关系型数据库下的<em>表</em>的概念，例如全班同学信息。</li>
-<li>Document：文档。一个集合中会包含多个文档（一个文档中存储一个同学的信息）。</li>
-</ul>
-<p><strong>安装</strong></p>
-<p>用HomeBrew 安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">berw install mongodb</div></pre></td></tr></table></figure>
-<p>Mongodb 创建仓库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p data/db   </div><div class="line">mongod --dbpath =./data/db</div></pre></td></tr></table></figure>
-<p> —dbpath 数据库的路径</p>
-<p><strong>启动</strong></p>
-<p>在命令终端中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo</div></pre></td></tr></table></figure>
-<p>这样进入mongo的命令行界面输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; use  express-api</div><div class="line">switched to db express-api</div></pre></td></tr></table></figure>
-<p><code>switched to db express-api</code>  表示已经切换到 express-api 的数据库了</p>
-<p>查看所有数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show dbs</div><div class="line">show collections</div></pre></td></tr></table></figure>
-<p> 此时此刻 没有发现新建的数据库 因为 没有数据保存到数据库</p>
-<p>我们来创建一个集合 名字叫做users.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span> db.createCollection('users')</div><div class="line">&#123; "ok" : 1 &#125;</div></pre></td></tr></table></figure>
-<p>建立成功</p>
-<p>存入一个数据把</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span> db.users.insert(&#123;username:'zzd',email:'startzzd@163.com'&#125;)</div><div class="line">WriteResult(&#123; "nInserted" : 1 &#125;)</div></pre></td></tr></table></figure>
-<p>输出结果 <code>WriteResult({ &quot;nInserted&quot; : 1 })</code> 表述成功写入一条数据。</p>
-<p>查找数据 <code>db.users.find()</code></p>
-<p>增加数据<code>db.users.insert({username:&#39;hello&#39;})</code></p>
-<p>更改数据<code>db.users.update({_id:&#39;123&#39;},{username:&#39;hello&#39;})</code> 查询条件 更改内容</p>
-<p>删除数据 <code>db.users.remove({_id: })</code></p>
-<h1 id="Express-操作-MongoDB"><a href="#Express-操作-MongoDB" class="headerlink" title="Express 操作 MongoDB"></a>Express 操作 MongoDB</h1><p>通过mongoose npm包 链接 mongodb;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>); 导入</div><div class="line"></div><div class="line">连接数据库, 连接数据库成功打印  success!</div><div class="line"><span class="keyword">const</span> db = mongoose.connection;</div><div class="line">db.on(<span class="string">'error'</span>, <span class="built_in">console</span>.log);</div><div class="line">db.once(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success!'</span>)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>这里的 <a href="http://mongoosejs.com/docs/api.html#connection_Connection" target="_blank" rel="external">mongoose.connection</a> 会映射到数据库 <code>express-api</code>，若此时 MongoDB 数据库没有启动，则运行本项目的话，在命令行中会报告错误信息：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123; [MongoError: failed to connect to server [localhost:<span class="number">27017</span>] on first connect]</div><div class="line">  name: <span class="string">'MongoError'</span>,</div><div class="line">  <span class="attr">message</span>: <span class="string">'failed to connect to server [localhost:27017] on first connect'</span> &#125;</div></pre></td></tr></table></figure>
-<p>新建一个文件夹<code>models/post.js</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</div><div class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</div></pre></td></tr></table></figure>
-<p>导入 <code>mongoose</code> 功能模块以及调用它提供的 <a href="http://mongoosejs.com/docs/api.html#index_Mongoose-Schema" target="_blank" rel="external">Schema()</a> 接口创建一个新的 <a href="http://mongoosejs.com/docs/guide.html" target="_blank" rel="external">schema</a>，每个 schema 会映射为 MongoDB 数据库中的一个 collection（集合），同时还能定义所映射集合包含的字段，以及字段的类型等规范。下面代码就创建了一个名为 <code>PostSchema</code> 的 schema, 并规定所映射的集合将包含三个字段：category、title 和 content，并且每个字段只能存储字符串类型的数据，其中 <code>title</code>字段中存储的数据不能为空。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PostSchema = <span class="keyword">new</span> Schema(</div><div class="line">  &#123;</div><div class="line">    <span class="attr">category</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;,</div><div class="line">    <span class="attr">title</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span> &#125;,</div><div class="line">    <span class="attr">content</span>: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;</div><div class="line">  &#125;,</div><div class="line">  &#123; <span class="attr">timestamps</span>: <span class="literal">true</span> &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>选项 <a href="http://mongoosejs.com/docs/guide.html#timestamps" target="_blank" rel="external">timestamps</a> 的值设置为 <code>true</code>，则自动给所映射集合添加 <code>createdAt</code> 和 <code>updatedAt</code> 两个字段。</p>
-<p>虽然定义了一个 schema，但是 Mongoose 还不知道这个 schema 到底映射成数据库中的哪个集合，所以还得把一个 schema 转换成一个 <a href="http://mongoosejs.com/docs/models.html" target="_blank" rel="external">model</a> 之后，根据 model 的名字，Mongoose 会自动查找到这个 schema 在数据库中对应的集合。</p>
-<p>最后导出</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">'Post'</span>, PostSchema);</div></pre></td></tr></table></figure>
-<p>通过 Mongoose 的 <a href="http://mongoosejs.com/docs/api.html#index_Mongoose-model" target="_blank" rel="external">model()</a> 方法把一个 schema 编译成一个 model，一个 model 实例会对应映射集合中的一条记录，这个 <code>model()</code> 方法的第一个参数 <code>Post</code> 则是映射集合名字的单数形式，所以 <code>PostSchema</code> 映射集合的名字是 <code>posts</code>。上述代码还把构建成的 Post Model 导出供外部其它文件使用。</p>
-<p>插入一条数据 在index 中</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Post = <span class="built_in">require</span>(<span class="string">'./models/post'</span>)</div><div class="line"></div><div class="line">db.once(<span class="string">'open'</span>, ()=&gt; &#123;</div><div class="line">  <span class="keyword">let</span> post = <span class="keyword">new</span> Post(&#123;<span class="attr">title</span>: <span class="string">'mongoose usage'</span>&#125;)</div><div class="line">  post.save(<span class="function">(<span class="params">err</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">if</span>(err) <span class="built_in">console</span>.log(err)</div><div class="line">  &#125;)</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'success!'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>首先导入 Post model，然后创建一个新的 model 实例 <code>post</code>，其对应 <code>posts</code> 集合中的一条记录，最后数据保存到数据库。</p>
-<p>注意：因为使用了异步操作方法 <a href="http://mongoosejs.com/docs/api.html#model_Model-save" target="_blank" rel="external">save()</a> 导致在终端报告警告信息</p>
-<p> 解决办法是在连接 MongoDB 数据库 <code>mongoose.connect(...);</code> 之前，添加一行代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongoose.Promise = global.Promise</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/12/mongodb/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
