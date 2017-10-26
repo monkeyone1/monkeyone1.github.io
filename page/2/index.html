@@ -151,6 +151,115 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue 2.0 个人学习手册" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue-2-0-个人学习手册"><a href="#vue-2-0-个人学习手册" class="headerlink" title="vue 2.0 个人学习手册"></a>vue 2.0 个人学习手册</h1><p>废话不说了 vue是结合react 和angular 优点</p>
+<p><strong>vue 指令集</strong></p>
+<ul>
+<li><p><code>v-if</code>指令 根据 状态 用来判断是否加载html的DOM</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;p v-if=&quot;hello&quot;&gt;yes&lt;/p&gt;</div><div class="line">data () &#123;</div><div class="line">    return &#123;</div><div class="line">      hello: false,</div><div class="line">&#125;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>v-else</code>指令 一般配合 <code>v-if</code> 比较简单</p>
+</li>
+<li><p><code>v-show</code>指令 用法和<code>v-if</code>一样 ,调整css中display属性，DOM已经加载，只是CSS控制没有显示出来</p>
+</li>
+<li><p><code>v-for</code>指令  类似 <code>for of</code> 想循环那个元素就在那个元素添加</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//遍历数组</div><div class="line">&lt;li v-for=&quot;item in items&quot;&gt;</div><div class="line">        &#123;&#123;item&#125;&#125;</div><div class="line">&lt;/li&gt;</div><div class="line">可以使用vue的computed 来 遍历数据.排序</div><div class="line">在methods添加</div><div class="line"> NumberSort(a,b) &#123;</div><div class="line">                     return a-b</div><div class="line">                &#125;</div><div class="line"> computed:&#123; //只能添加 能用方法 只能新建个 sortitems 的方法</div><div class="line">            sortitems : function () &#123;</div><div class="line">                return this.items.sort(this.NumberSort)</div><div class="line">              &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 遍历对象</div><div class="line">&lt;div v-for=&apos;(item,index) in objs &apos;&gt;</div><div class="line">  id &#123;&#123;index&#125;&#125; 姓名 &#123;&#123;item.name&#125;&#125; 年龄 &#123;&#123;item.age&#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">/数组对象方法排序:</div><div class="line">function sortByKey(array,key)&#123;</div><div class="line">    return array.sort(function(a,b)&#123;</div><div class="line">      var x=a[key];</div><div class="line">      var y=b[key];</div><div class="line">      return ((x&lt;y)?-1:((x&gt;y)?1:0));</div><div class="line">   &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">2</div><div class="line">3</div><div class="line">sortStudent:function()&#123;</div><div class="line">     return sortByKey(this.students,&apos;age&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>​</p>
+</li>
+</ul>
+</li>
+<li><p><code>v-bind</code>指令 缩写 <code>:</code> 绑定属性</p>
+<ul>
+<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">v-bind:src=”imgSrc” 绑定路径</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"className"</span>&gt;</span>1、绑定classA<span class="tag">&lt;/<span class="name">div</span>&gt;</span>绑定calss</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"&#123;classA:isOk&#125;"</span>&gt;</span>2、绑定class中的判断<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA,classB]"</span>&gt;</span>3、绑定class中的数组<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"isOk?classA:classB"</span>&gt;</span>4、绑定class中的三元表达式判断<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">div :style="&#123;color:red,fontSize:font&#125;"&gt;5、绑定style<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>​</p>
+</li>
+</ul>
+</li>
+<li><p><code>v-on</code>指令 <code>@</code> 绑定事件如<code>@click=&#39;handleClick&#39;</code></p>
+</li>
+<li><p><code>v-once</code>指令</p>
+</li>
+<li><p><code>v-modle</code>  </p>
+<ul>
+<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"txext"</span> <span class="attr">v-model.number.trim</span>=<span class="string">"input"</span>&gt;</span></div><div class="line">使用</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>多选绑定一个数组<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"123"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>1321<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"12123"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>234<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"1213"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>234<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;web_Names&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;单选按钮绑定&lt;/h3&gt;</div><div class="line">&lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;男&quot; v-model=&quot;sex&quot;&gt;</div><div class="line">&lt;label for=&quot;one&quot;&gt;男&lt;/label&gt;</div><div class="line">&lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;女&quot; v-model=&quot;sex&quot;&gt;</div><div class="line">&lt;label for=&quot;one&quot;&gt;女&lt;/label&gt;</div><div class="line">&lt;p&gt;&#123;&#123;sex&#125;&#125;&lt;/p&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>.lazy：懒加载 失去光标后,取代 imput 监听 change 事件。</p>
+</li>
+<li><p>.number：输入字符串转为数字。</p>
+</li>
+<li><p>.trim：输入去掉首尾空格。</p>
+</li>
+</ul>
+<p>​</p>
+<h3 id="v-if-和v-show的区别"><a href="#v-if-和v-show的区别" class="headerlink" title="v-if 和v-show的区别"></a>v-if 和v-show的区别</h3><p>v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。</p>
+<p>v-show：调整css dispaly属性，可以使客户端操作更加流畅。</p>
+</li>
+</ul>
+<p>不要在<code>methods</code> 中写 箭头函数 ,会导致 <code>this</code>指向问题. ps:原因找到了是因为<code>method</code>会制动绑定 this 类似于<code>React.createClass</code></p>
+<h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p><code>vue-router</code> 和 <code>react-router</code> 写法有一些不一样， 但是写了一遍还好</p>
+<p><code>&lt;router-view&gt;&lt;/router-view&gt;</code>   路由渲染区</p>
+<p>基本用法 </p>
+<ol>
+<li><p>导入 组件  加载 router</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div></pre></td></tr></table></figure>
+</li>
+<li><p>路由组件 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/'</span>, <span class="comment">//组件路径</span></div><div class="line">      component: Hello <span class="comment">// 组件</span></div><div class="line">    &#125;, &#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/a'</span>,</div><div class="line">      <span class="attr">component</span>: first</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>子路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> abc = &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">`&lt;div&gt;</span></div><div class="line">  &lt;h2&gt;这里是abc&lt;/h2&gt;</div><div class="line">  &lt;router-view&gt;&lt;/router-view&gt;</div><div class="line">&lt;/div&gt;`&#125;</div><div class="line"><span class="keyword">const</span> abc1 = &#123; <span class="attr">template</span>: <span class="string">'&lt;div&gt;这里是abc1&lt;/div&gt;'</span> &#125;</div><div class="line"><span class="keyword">const</span> abc2 = &#123; <span class="attr">template</span>: <span class="string">'&lt;div&gt;这里是abc2&lt;/div&gt;'</span> &#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/abc'</span>,</div><div class="line">      <span class="attr">component</span>: abc,</div><div class="line">      <span class="attr">children</span>: [</div><div class="line">        &#123; <span class="attr">path</span>: <span class="string">'/'</span>, <span class="attr">component</span>: abc1 &#125;,</div><div class="line">        &#123;<span class="attr">path</span>: <span class="string">'aa'</span>, <span class="attr">component</span>: abc2&#125;</div><div class="line">      ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>404</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'*'</span>, <span class="comment">//通配符</span></div><div class="line">      component: f404</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
+</li>
+</ol>
+<h2 id="路由的传值"><a href="#路由的传值" class="headerlink" title="路由的传值"></a>路由的传值</h2><p>有两种方法 一个在路由中传 name</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/'</span>,</div><div class="line">      <span class="attr">name</span>: <span class="string">'hello'</span>,</div><div class="line">      <span class="attr">component</span>: Hello</div><div class="line">&#125;</div><div class="line"></div><div class="line">在子路由中获取</div><div class="line">  &#123;&#123;$route.name&#125;&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/14/vue 2.0 个人学习手册/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-mongodb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -234,7 +343,7 @@
 
 
   
-    <article id="post-hello Express" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Express/hello Express" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
@@ -290,7 +399,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/07/hello Express/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/06/07/Express/hello Express/">展开全文 >></a>
         </p>
       
 
@@ -750,57 +859,6 @@
 
 
   
-    <article id="post-React  第七天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    React     第七天</p>
-<h4 id="React核心-start-props-lifecycle-Compoment"><a href="#React核心-start-props-lifecycle-Compoment" class="headerlink" title="React核心 start,props,lifecycle,Compoment"></a>React核心 <strong>start,props,lifecycle,Compoment</strong></h4><p><strong>props</strong></p>
-<p> 组件之间数据传递 只能父级往子级传送</p>
-<p>使用方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">this.props //拿到父级传过来的数据</div><div class="line">this.props.xxx //根据对象名来获取数据</div></pre></td></tr></table></figure>
-<p> 设置默认属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">App.defaultProps = &#123;</div><div class="line">    bg: &apos;#0f0&apos;,</div><div class="line">    color: &apos;red&apos;,</div><div class="line">    pad: 80</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>类型检查 <strong>PropTypes</strong></p>
-<p> 需要导入<code>PropTypes</code> 没有导入可以写成<code>React.PropTypes.xxx</code></p>
-<p>通过指定 <code>propTypes</code> 可以校验props属性值的类型，校验可提升开发者体验，用于约定统一的接口规范</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import React, &#123;Component,PropTypes&#125; from &apos;react&apos;;</div><div class="line"></div><div class="line">App.propTypes=&#123;</div><div class="line">    bg:PropTypes.string,</div><div class="line">    pad:PropTypes.number</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用<code>...</code>用展开对象来代替普通赋值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Card  title=&apos;第三天的标题&apos; date=&apos;2017.3.30&apos; index=&#123;3&#125;/&gt;</div><div class="line">               &#123;data.map((item) =&gt; </div><div class="line">                            &lt; Card &#123;...item&#125;/&gt; </div><div class="line">               )&#125;</div></pre></td></tr></table></figure>
-<p><strong>Chidren</strong></p>
-<p><strong>AJAX</strong></p>
-<p>原生请求</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var xml = new XMLHttpRequest();</div><div class="line">   //</div><div class="line">   xml.onreadystatechange = function () &#123;</div><div class="line">       if (xml.readyState == 4 &amp;&amp; xml.status == 200) &#123;</div><div class="line">           console.log(xml.responseText);</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   xml.open(&quot;GET&quot;, &quot;https://cnodejs.org/api/v1/topics&quot;,true);</div><div class="line">   //limit=2 限制传回数据</div><div class="line">   xml.send();</div></pre></td></tr></table></figure>
-<p><strong>JSON</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var  jsonobj=JSON.stringify(obj);  // 对象转换过成JSON对象</div><div class="line">var obj=JSON.parse(jsonStr); // 将JSON对象解析成对象</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/React  第七天/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -895,6 +953,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

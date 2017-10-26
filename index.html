@@ -151,6 +151,46 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-求职前端 张振东--个人简历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Javascript-浮点运算问题分析与解决"><a href="#Javascript-浮点运算问题分析与解决" class="headerlink" title="Javascript 浮点运算问题分析与解决"></a>Javascript 浮点运算问题分析与解决</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>JavaScript 只有一种数字类型 <code>Number</code> ，而且在Javascript中所有的数字都是以<a href="http://zh.wikipedia.org/zh-cn/IEEE_754" target="_blank" rel="external">IEEE-754</a>标准格式表示的。 浮点数的精度问题不是JavaScript特有的，因为有些小数以二进制表示位数是无穷的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">十进制           二进制</div><div class="line">0.1              0.0001 1001 1001 1001 ...</div><div class="line">0.2              0.0011 0011 0011 0011 ...</div><div class="line">0.3              0.0100 1100 1100 1100 ...</div><div class="line">0.4              0.0110 0110 0110 0110 ...</div><div class="line">0.5              0.1</div><div class="line">0.6              0.1001 1001 1001 1001 ...</div></pre></td></tr></table></figure>
+<p>所以比如 <code>1.1</code> ，其程序实际上无法真正的表示 ‘1.1’，而只能做到一定程度上的准确,这是无法避免的精度丢失：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1.09999999999999999</div></pre></td></tr></table></figure>
+<p>在JavaScript中问题还要复杂些，这里只给一些在Chrome中测试数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> 输入               输出</div><div class="line">1.0-0.9 == 0.1     False</div><div class="line">1.0-0.8 == 0.2     False</div><div class="line">1.0-0.7 == 0.3     False</div><div class="line">1.0-0.6 == 0.4     True</div><div class="line">1.0-0.5 == 0.5     True</div><div class="line">1.0-0.4 == 0.6     True</div><div class="line">1.0-0.3 == 0.7     True</div><div class="line">1.0-0.2 == 0.8     True</div><div class="line">1.0-0.1 == 0.9     True</div></pre></td></tr></table></figure>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>那如何来避免这类 <code>1.0-0.9 != 0.1</code> 的非bug型问题发生呢？下面给出一种目前用的比较多的解决方案, 在判断浮点运算结果前对计算结果进行精度缩小，因为在精度缩小的过程总会自动四舍五入:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(1.0-0.9).toFixed(digits)                   // toFixed() 精度参数须在 0 与20 之间</div><div class="line">parseFloat((1.0-0.9).toFixed(10)) === 0.1   // 结果为True</div><div class="line">parseFloat((1.0-0.8).toFixed(10)) === 0.2   // 结果为True</div><div class="line">parseFloat((1.0-0.7).toFixed(10)) === 0.3   // 结果为True</div><div class="line">parseFloat((11.0-11.8).toFixed(10)) === -0.8   // 结果为True</div></pre></td></tr></table></figure>
+<h2 id="方法提炼"><a href="#方法提炼" class="headerlink" title="方法提炼"></a>方法提炼</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 通过isEqual工具方法判断数值是否相等</div><div class="line">function isEqual(number1, number2, digits)&#123;</div><div class="line">	digits = digits == undefined? 10: digits; // 默认精度为10</div><div class="line">	return number1.toFixed(digits) === number2.toFixed(digits);</div><div class="line">&#125;</div><div class="line"></div><div class="line">isEqual(1.0-0.7, 0.3);  // return true</div><div class="line"></div><div class="line">// 原生扩展方式，更喜欢面向对象的风格</div><div class="line">Number.prototype.isEqual = function(number, digits)&#123;</div><div class="line">	digits = digits == undefined? 10: digits; // 默认精度为10</div><div class="line">	return this.toFixed(digits) === number.toFixed(digits);</div><div class="line">&#125;</div><div class="line"></div><div class="line">(1.0-0.7).isEqual(0.3); // return true</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/26/求职前端 张振东--个人简历/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-使用  nmap 扫描" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -320,6 +360,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -346,7 +397,7 @@
       
         <h1 id="vue的component-学习"><a href="#vue的component-学习" class="headerlink" title="vue的component 学习"></a>vue的component 学习</h1><p>Vue的component 组件 和react 一样是 是核心 所以我单独拿出来写个笔记 ✧(≖ ◡ ≖✿)嘿嘿</p>
 <p><strong>全局组件</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'zzd'</span>,&#123;</div><div class="line">           <span class="attr">template</span>: <span class="string">`&lt;div&gt;hello  这是全局zzd 标记 你好 我是&lt;em&gt;ZZ:D&lt;/em&gt;&lt;/div&gt;`</span></div><div class="line">       &#125;)</div><div class="line"></div><div class="line"></div><div class="line">&lt;zzd&gt;<span class="xml"><span class="tag">&lt;/<span class="name">zzd</span>&gt;</span></span> <span class="comment">// html</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'zzd'</span>,&#123;</div><div class="line">           <span class="attr">template</span>: <span class="string">`&lt;div&gt;hello  这是全局zzd 标记 你好 我是&lt;em&gt;ZZ:D&lt;/em&gt;&lt;/div&gt;`</span></div><div class="line">       &#125;)</div><div class="line"></div><div class="line"></div><div class="line">&lt;zzd&gt;&lt;/zzd&gt; <span class="comment">// html</span></div></pre></td></tr></table></figure>
 <p><strong>局部组件</strong> </p>
 <ul>
 <li>只能在app 的作用域使用 ,在app 外 无效</li>
@@ -383,63 +434,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/25/vue的component 学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-# vue 的全局 api " class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="vue-的全局-api"><a href="#vue-的全局-api" class="headerlink" title="vue 的全局 api"></a>vue 的全局 api</h1><h3 id="自定义指令-Vue-directive"><a href="#自定义指令-Vue-directive" class="headerlink" title="自定义指令 Vue.directive"></a>自定义指令 Vue.directive</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;p v-zzd&gt;&#123;&#123;num&#125;&#125;&lt;/p&gt;</div><div class="line">Vue.directive('zzd',function(el,binding,vnode)&#123;</div><div class="line">        el.style.color ='#ccc';</div><div class="line">        console.log(binding.name); //zzd</div><div class="line">        console.log(binding); //一个对象</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
-<p><strong>el:</strong> 指令所绑定的元素，可以用来直接操作DOM。</p>
-<p><strong>binding:  </strong>一个对象，包含指令的很多信息。</p>
-<p><strong>vnode:</strong> Vue编译生成的虚拟节点</p>
-<p><strong>自定义的指令生命周期</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Vue.directive(<span class="string">'zzd'</span>, &#123;</div><div class="line">           <span class="attr">bind</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//被绑定</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'1 - bind'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">inserted</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//绑定到节点</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'2 - inserted'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">update</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//组件更新</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'3 - update'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">componentUpdated</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//组件更新完成</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'4 - componentUpdated'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">unbind</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//解绑</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'1 - bind'</span>);</div><div class="line">           &#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>bind:只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个绑定时执行一次的初始化动作。</li>
-<li>inserted:被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document中）。</li>
-<li>update:被绑定于元素所在的模板更新时调用，而无论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新。</li>
-<li>componentUpdated:被绑定元素所在模板完成一次更新周期时调用。</li>
-<li>unbind:只调用一次，指令与元素解绑时调用。</li>
-</ol>
-<p><strong>自定义标签  Vue.extend</strong>  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hello = Vue.extend(&#123;</div><div class="line">          <span class="attr">template</span>:<span class="string">"&lt;p&gt;&lt;a :href='authorUrl'&gt;&#123;&#123;authorName&#125;&#125;&lt;/a&gt;&lt;/p&gt;"</span>,</div><div class="line">          <span class="attr">data</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">              <span class="keyword">return</span>&#123;</div><div class="line">                  <span class="attr">authorName</span>:<span class="string">'hello'</span>,</div><div class="line">                  <span class="attr">authorUrl</span>:<span class="string">'http://www.baidu.com'</span></div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">   <span class="keyword">new</span> hello().$mount(<span class="string">'#hello'</span>)</div></pre></td></tr></table></figure>
-<p><strong>vue.set 到底干嘛的</strong></p>
-<ul>
-<li>由于Javascript的限制，Vue不能自动检测以下变动的数组。</li>
-</ul>
-<ul>
-<li>当你利用索引直接设置一个项时，vue不会为我们自动更新。</li>
-<li>当你修改数组的长度时，vue不会为我们自动更新。</li>
-</ul>
-<p><strong>vue 生命周期</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">beforeCreate:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'1-beforeCreate 初始化之后'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">created</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'2-created 创建完成'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeMount</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'3-beforeMount 挂载之前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">mounted</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'4-mounted 被创建'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeUpdate</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'5-beforeUpdate 数据更新前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">updated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'6-updated 被更新后'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">activated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'7-activated'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">deactivated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'8-deactivated'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeDestroy</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'9-beforeDestroy 销毁之前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">destroyed</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'10-destroyed 销毁之后'</span>)</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/22/# vue 的全局 api /">展开全文 >></a>
         </p>
       
 
@@ -497,6 +491,63 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/22/# vue 的全局 api/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-# vue 的全局 api " class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue-的全局-api"><a href="#vue-的全局-api" class="headerlink" title="vue 的全局 api"></a>vue 的全局 api</h1><h3 id="自定义指令-Vue-directive"><a href="#自定义指令-Vue-directive" class="headerlink" title="自定义指令 Vue.directive"></a>自定义指令 Vue.directive</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;p v-zzd&gt;&#123;&#123;num&#125;&#125;&lt;/p&gt;</div><div class="line">Vue.directive('zzd',function(el,binding,vnode)&#123;</div><div class="line">        el.style.color ='#ccc';</div><div class="line">        console.log(binding.name); //zzd</div><div class="line">        console.log(binding); //一个对象</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<p><strong>el:</strong> 指令所绑定的元素，可以用来直接操作DOM。</p>
+<p><strong>binding:  </strong>一个对象，包含指令的很多信息。</p>
+<p><strong>vnode:</strong> Vue编译生成的虚拟节点</p>
+<p><strong>自定义的指令生命周期</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Vue.directive(<span class="string">'zzd'</span>, &#123;</div><div class="line">           <span class="attr">bind</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//被绑定</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'1 - bind'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">inserted</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//绑定到节点</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'2 - inserted'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">update</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//组件更新</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'3 - update'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">componentUpdated</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//组件更新完成</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'4 - componentUpdated'</span>);</div><div class="line">           &#125;,</div><div class="line">           <span class="attr">unbind</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//解绑</span></div><div class="line">               <span class="built_in">console</span>.log(<span class="string">'1 - bind'</span>);</div><div class="line">           &#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>bind:只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个绑定时执行一次的初始化动作。</li>
+<li>inserted:被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document中）。</li>
+<li>update:被绑定于元素所在的模板更新时调用，而无论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新。</li>
+<li>componentUpdated:被绑定元素所在模板完成一次更新周期时调用。</li>
+<li>unbind:只调用一次，指令与元素解绑时调用。</li>
+</ol>
+<p><strong>自定义标签  Vue.extend</strong>  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hello = Vue.extend(&#123;</div><div class="line">          <span class="attr">template</span>:<span class="string">"&lt;p&gt;&lt;a :href='authorUrl'&gt;&#123;&#123;authorName&#125;&#125;&lt;/a&gt;&lt;/p&gt;"</span>,</div><div class="line">          <span class="attr">data</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">              <span class="keyword">return</span>&#123;</div><div class="line">                  <span class="attr">authorName</span>:<span class="string">'hello'</span>,</div><div class="line">                  <span class="attr">authorUrl</span>:<span class="string">'http://www.baidu.com'</span></div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">   <span class="keyword">new</span> hello().$mount(<span class="string">'#hello'</span>)</div></pre></td></tr></table></figure>
+<p><strong>vue.set 到底干嘛的</strong></p>
+<ul>
+<li>由于Javascript的限制，Vue不能自动检测以下变动的数组。</li>
+</ul>
+<ul>
+<li>当你利用索引直接设置一个项时，vue不会为我们自动更新。</li>
+<li>当你修改数组的长度时，vue不会为我们自动更新。</li>
+</ul>
+<p><strong>vue 生命周期</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">beforeCreate:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'1-beforeCreate 初始化之后'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">created</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'2-created 创建完成'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeMount</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'3-beforeMount 挂载之前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">mounted</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'4-mounted 被创建'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeUpdate</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'5-beforeUpdate 数据更新前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">updated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'6-updated 被更新后'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">activated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'7-activated'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">deactivated</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'8-deactivated'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">beforeDestroy</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'9-beforeDestroy 销毁之前'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">destroyed</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'10-destroyed 销毁之后'</span>)</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/22/# vue 的全局 api /">展开全文 >></a>
         </p>
       
 
@@ -614,115 +665,6 @@
 
 
   
-    <article id="post-vue 2.0 个人学习手册" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="vue-2-0-个人学习手册"><a href="#vue-2-0-个人学习手册" class="headerlink" title="vue 2.0 个人学习手册"></a>vue 2.0 个人学习手册</h1><p>废话不说了 vue是结合react 和angular 优点</p>
-<p><strong>vue 指令集</strong></p>
-<ul>
-<li><p><code>v-if</code>指令 根据 状态 用来判断是否加载html的DOM</p>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;p v-if=&quot;hello&quot;&gt;yes&lt;/p&gt;</div><div class="line">data () &#123;</div><div class="line">    return &#123;</div><div class="line">      hello: false,</div><div class="line">&#125;&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><code>v-else</code>指令 一般配合 <code>v-if</code> 比较简单</p>
-</li>
-<li><p><code>v-show</code>指令 用法和<code>v-if</code>一样 ,调整css中display属性，DOM已经加载，只是CSS控制没有显示出来</p>
-</li>
-<li><p><code>v-for</code>指令  类似 <code>for of</code> 想循环那个元素就在那个元素添加</p>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//遍历数组</div><div class="line">&lt;li v-for=&quot;item in items&quot;&gt;</div><div class="line">        &#123;&#123;item&#125;&#125;</div><div class="line">&lt;/li&gt;</div><div class="line">可以使用vue的computed 来 遍历数据.排序</div><div class="line">在methods添加</div><div class="line"> NumberSort(a,b) &#123;</div><div class="line">                     return a-b</div><div class="line">                &#125;</div><div class="line"> computed:&#123; //只能添加 能用方法 只能新建个 sortitems 的方法</div><div class="line">            sortitems : function () &#123;</div><div class="line">                return this.items.sort(this.NumberSort)</div><div class="line">              &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 遍历对象</div><div class="line">&lt;div v-for=&apos;(item,index) in objs &apos;&gt;</div><div class="line">  id &#123;&#123;index&#125;&#125; 姓名 &#123;&#123;item.name&#125;&#125; 年龄 &#123;&#123;item.age&#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">/数组对象方法排序:</div><div class="line">function sortByKey(array,key)&#123;</div><div class="line">    return array.sort(function(a,b)&#123;</div><div class="line">      var x=a[key];</div><div class="line">      var y=b[key];</div><div class="line">      return ((x&lt;y)?-1:((x&gt;y)?1:0));</div><div class="line">   &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">2</div><div class="line">3</div><div class="line">sortStudent:function()&#123;</div><div class="line">     return sortByKey(this.students,&apos;age&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>​</p>
-</li>
-</ul>
-</li>
-<li><p><code>v-bind</code>指令 缩写 <code>:</code> 绑定属性</p>
-<ul>
-<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">v-bind:src=”imgSrc” 绑定路径</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"className"</span>&gt;</span>1、绑定classA<span class="tag">&lt;/<span class="name">div</span>&gt;</span>绑定calss</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"&#123;classA:isOk&#125;"</span>&gt;</span>2、绑定class中的判断<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[classA,classB]"</span>&gt;</span>3、绑定class中的数组<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"isOk?classA:classB"</span>&gt;</span>4、绑定class中的三元表达式判断<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">div :style="&#123;color:red,fontSize:font&#125;"&gt;5、绑定style<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>​</p>
-</li>
-</ul>
-</li>
-<li><p><code>v-on</code>指令 <code>@</code> 绑定事件如<code>@click=&#39;handleClick&#39;</code></p>
-</li>
-<li><p><code>v-once</code>指令</p>
-</li>
-<li><p><code>v-modle</code>  </p>
-<ul>
-<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"txext"</span> <span class="attr">v-model.number.trim</span>=<span class="string">"input"</span>&gt;</span></div><div class="line">使用</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>多选绑定一个数组<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"123"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>1321<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"12123"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>234<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>  <span class="attr">value</span>=<span class="string">"1213"</span> <span class="attr">v-model</span>=<span class="string">"web_Names"</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"234"</span>&gt;</span>234<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;web_Names&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;单选按钮绑定&lt;/h3&gt;</div><div class="line">&lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;男&quot; v-model=&quot;sex&quot;&gt;</div><div class="line">&lt;label for=&quot;one&quot;&gt;男&lt;/label&gt;</div><div class="line">&lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;女&quot; v-model=&quot;sex&quot;&gt;</div><div class="line">&lt;label for=&quot;one&quot;&gt;女&lt;/label&gt;</div><div class="line">&lt;p&gt;&#123;&#123;sex&#125;&#125;&lt;/p&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>.lazy：懒加载 失去光标后,取代 imput 监听 change 事件。</p>
-</li>
-<li><p>.number：输入字符串转为数字。</p>
-</li>
-<li><p>.trim：输入去掉首尾空格。</p>
-</li>
-</ul>
-<p>​</p>
-<h3 id="v-if-和v-show的区别"><a href="#v-if-和v-show的区别" class="headerlink" title="v-if 和v-show的区别"></a>v-if 和v-show的区别</h3><p>v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。</p>
-<p>v-show：调整css dispaly属性，可以使客户端操作更加流畅。</p>
-</li>
-</ul>
-<p>不要在<code>methods</code> 中写 箭头函数 ,会导致 <code>this</code>指向问题. ps:原因找到了是因为<code>method</code>会制动绑定 this 类似于<code>React.createClass</code></p>
-<h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p><code>vue-router</code> 和 <code>react-router</code> 写法有一些不一样， 但是写了一遍还好</p>
-<p><code>&lt;router-view&gt;&lt;/router-view&gt;</code>   路由渲染区</p>
-<p>基本用法 </p>
-<ol>
-<li><p>导入 组件  加载 router</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></div><div class="line">Vue.use(Router)</div></pre></td></tr></table></figure>
-</li>
-<li><p>路由组件 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">routes</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/'</span>, <span class="comment">//组件路径</span></div><div class="line">      component: Hello <span class="comment">// 组件</span></div><div class="line">    &#125;, &#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/a'</span>,</div><div class="line">      <span class="attr">component</span>: first</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>子路由</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> abc = &#123;</div><div class="line">  <span class="attr">template</span>: <span class="string">`&lt;div&gt;</span></div><div class="line">  &lt;h2&gt;这里是abc&lt;/h2&gt;</div><div class="line">  &lt;router-view&gt;&lt;/router-view&gt;</div><div class="line">&lt;/div&gt;`&#125;</div><div class="line"><span class="keyword">const</span> abc1 = &#123; <span class="attr">template</span>: <span class="string">'&lt;div&gt;这里是abc1&lt;/div&gt;'</span> &#125;</div><div class="line"><span class="keyword">const</span> abc2 = &#123; <span class="attr">template</span>: <span class="string">'&lt;div&gt;这里是abc2&lt;/div&gt;'</span> &#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/abc'</span>,</div><div class="line">      <span class="attr">component</span>: abc,</div><div class="line">      <span class="attr">children</span>: [</div><div class="line">        &#123; <span class="attr">path</span>: <span class="string">'/'</span>, <span class="attr">component</span>: abc1 &#125;,</div><div class="line">        &#123;<span class="attr">path</span>: <span class="string">'aa'</span>, <span class="attr">component</span>: abc2&#125;</div><div class="line">      ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>404</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'*'</span>, <span class="comment">//通配符</span></div><div class="line">      component: f404</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​</p>
-<p>​</p>
-</li>
-</ol>
-<h2 id="路由的传值"><a href="#路由的传值" class="headerlink" title="路由的传值"></a>路由的传值</h2><p>有两种方法 一个在路由中传 name</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">path</span>: <span class="string">'/'</span>,</div><div class="line">      <span class="attr">name</span>: <span class="string">'hello'</span>,</div><div class="line">      <span class="attr">component</span>: Hello</div><div class="line">&#125;</div><div class="line"></div><div class="line">在子路由中获取</div><div class="line">  &#123;&#123;$route.name&#125;&#125;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/14/vue 2.0 个人学习手册/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -817,6 +759,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

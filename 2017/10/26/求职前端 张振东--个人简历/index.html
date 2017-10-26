@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ZZ:D</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hello Express这个Express 个人学习手册 Express 是一个 node 的后端框架.   安装Express  12345mkdir hello-express cd hello-expressnpm init npm install --save express || yarn add express 注意  虽然 node.js 7.0+  对ES6 的支持 已经到了99">
+  <meta name="description" content="Javascript 浮点运算问题分析与解决分析JavaScript 只有一种数字类型 Number ，而且在Javascript中所有的数字都是以IEEE-754标准格式表示的。 浮点数的精度问题不是JavaScript特有的，因为有些小数以二进制表示位数是无穷的： 1234567十进制           二进制0.1              0.0001 1001 1001 1001 ..">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZZ:D">
-<meta property="og:url" content="http://yoursite.com/2017/06/07/hello Express/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/10/26/求职前端 张振东--个人简历/index.html">
 <meta property="og:site_name" content="ZZ:D">
-<meta property="og:description" content="hello Express这个Express 个人学习手册 Express 是一个 node 的后端框架.   安装Express  12345mkdir hello-express cd hello-expressnpm init npm install --save express || yarn add express 注意  虽然 node.js 7.0+  对ES6 的支持 已经到了99">
-<meta property="og:updated_time" content="2017-06-06T16:54:29.000Z">
+<meta property="og:description" content="Javascript 浮点运算问题分析与解决分析JavaScript 只有一种数字类型 Number ，而且在Javascript中所有的数字都是以IEEE-754标准格式表示的。 浮点数的精度问题不是JavaScript特有的，因为有些小数以二进制表示位数是无穷的： 1234567十进制           二进制0.1              0.0001 1001 1001 1001 ..">
+<meta property="og:updated_time" content="2017-10-26T10:45:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZZ:D">
-<meta name="twitter:description" content="hello Express这个Express 个人学习手册 Express 是一个 node 的后端框架.   安装Express  12345mkdir hello-express cd hello-expressnpm init npm install --save express || yarn add express 注意  虽然 node.js 7.0+  对ES6 的支持 已经到了99">
+<meta name="twitter:description" content="Javascript 浮点运算问题分析与解决分析JavaScript 只有一种数字类型 Number ，而且在Javascript中所有的数字都是以IEEE-754标准格式表示的。 浮点数的精度问题不是JavaScript特有的，因为有些小数以二进制表示位数是无穷的： 1234567十进制           二进制0.1              0.0001 1001 1001 1001 ..">
   
     <link rel="alternative" href="/atom.xml" title="ZZ:D" type="application/atom+xml">
   
@@ -153,51 +153,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello Express" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-求职前端 张振东--个人简历" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="hello-Express"><a href="#hello-Express" class="headerlink" title="hello Express"></a>hello Express</h1><p><strong>这个Express 个人学习手册</strong></p>
-<p>Express 是一个 node 的后端框架. </p>
-<ol>
-<li><p>安装Express </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir hello-express </div><div class="line">cd hello-express</div><div class="line">npm init </div><div class="line"></div><div class="line">npm install --save express || yarn add express</div></pre></td></tr></table></figure>
-<p><strong>注意  虽然 node.js 7.0+  对ES6 的支持 已经到了99%  但是node 不支持ES6模块语法 用require 代替import</strong></p>
-</li>
-</ol>
-<p>2.创建 index.js 内容如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> express =<span class="built_in">require</span>(express);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, (req, res)=&gt;&#123;</div><div class="line">  res.send(<span class="string">'Hello World'</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>,() =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'runing on port 3000'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<ul>
-<li><p>上面的3000 指的是3000端口  英文 port </p>
-</li>
-<li><p>代码中 <code>get(/)</code>  </p>
-<ul>
-<li>get 是一个http 的请求  还有 post/delete/put</li>
-<li>/ 是一个路径  ,英文 path</li>
-</ul>
-</li>
-<li><p>代码中 req 是 request <strong>请求</strong> 缩写 ,res 是 response <strong>响应</strong> 的 缩写 </p>
-</li>
-<li><p><code>res.send(&#39;Hello world&#39;);</code> 是从后端向前端浏览器返回字符串 <strong>Hello World</strong></p>
-<p>​</p>
-<p>ps: const 和let 的区别,  const 是只读变量 ,let 是可修改变量</p>
-</li>
-</ul>
-<ol>
-<li>启动  node index.js<ul>
-<li>打开浏览器 输入 <code>http://localhost:3000</code>   <code>localhost</code>  就是我们自己机器的域名 IP 127.0.0.1</li>
-<li>页面会显示 Hello word</li>
-<li>但是每次更改源码都得手动启动 很麻烦 这里 推荐一个包 <code>nodemon</code>安装 <ul>
-<li><code>npm install -g nodemon</code> 全局安装</li>
-<li>使用 <code>nodemon index.js</code>    只要更改就会自动刷新页面✧(≖ ◡ ≖✿)嘿嘿</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上 我 实现了一个基于 Express 服务器 网站  并且输出了 hello word  (๑•̀ㅂ•́)و✧加油 </p>
-
+        <h1 id="Javascript-浮点运算问题分析与解决"><a href="#Javascript-浮点运算问题分析与解决" class="headerlink" title="Javascript 浮点运算问题分析与解决"></a>Javascript 浮点运算问题分析与解决</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>JavaScript 只有一种数字类型 <code>Number</code> ，而且在Javascript中所有的数字都是以<a href="http://zh.wikipedia.org/zh-cn/IEEE_754" target="_blank" rel="external">IEEE-754</a>标准格式表示的。 浮点数的精度问题不是JavaScript特有的，因为有些小数以二进制表示位数是无穷的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">十进制           二进制</div><div class="line">0.1              0.0001 1001 1001 1001 ...</div><div class="line">0.2              0.0011 0011 0011 0011 ...</div><div class="line">0.3              0.0100 1100 1100 1100 ...</div><div class="line">0.4              0.0110 0110 0110 0110 ...</div><div class="line">0.5              0.1</div><div class="line">0.6              0.1001 1001 1001 1001 ...</div></pre></td></tr></table></figure>
+<p>所以比如 <code>1.1</code> ，其程序实际上无法真正的表示 ‘1.1’，而只能做到一定程度上的准确,这是无法避免的精度丢失：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1.09999999999999999</div></pre></td></tr></table></figure>
+<p>在JavaScript中问题还要复杂些，这里只给一些在Chrome中测试数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> 输入               输出</div><div class="line">1.0-0.9 == 0.1     False</div><div class="line">1.0-0.8 == 0.2     False</div><div class="line">1.0-0.7 == 0.3     False</div><div class="line">1.0-0.6 == 0.4     True</div><div class="line">1.0-0.5 == 0.5     True</div><div class="line">1.0-0.4 == 0.6     True</div><div class="line">1.0-0.3 == 0.7     True</div><div class="line">1.0-0.2 == 0.8     True</div><div class="line">1.0-0.1 == 0.9     True</div></pre></td></tr></table></figure>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>那如何来避免这类 <code>1.0-0.9 != 0.1</code> 的非bug型问题发生呢？下面给出一种目前用的比较多的解决方案, 在判断浮点运算结果前对计算结果进行精度缩小，因为在精度缩小的过程总会自动四舍五入:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(1.0-0.9).toFixed(digits)                   // toFixed() 精度参数须在 0 与20 之间</div><div class="line">parseFloat((1.0-0.9).toFixed(10)) === 0.1   // 结果为True</div><div class="line">parseFloat((1.0-0.8).toFixed(10)) === 0.2   // 结果为True</div><div class="line">parseFloat((1.0-0.7).toFixed(10)) === 0.3   // 结果为True</div><div class="line">parseFloat((11.0-11.8).toFixed(10)) === -0.8   // 结果为True</div></pre></td></tr></table></figure>
+<h2 id="方法提炼"><a href="#方法提炼" class="headerlink" title="方法提炼"></a>方法提炼</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 通过isEqual工具方法判断数值是否相等</div><div class="line">function isEqual(number1, number2, digits)&#123;</div><div class="line">	digits = digits == undefined? 10: digits; // 默认精度为10</div><div class="line">	return number1.toFixed(digits) === number2.toFixed(digits);</div><div class="line">&#125;</div><div class="line"></div><div class="line">isEqual(1.0-0.7, 0.3);  // return true</div><div class="line"></div><div class="line">// 原生扩展方式，更喜欢面向对象的风格</div><div class="line">Number.prototype.isEqual = function(number, digits)&#123;</div><div class="line">	digits = digits == undefined? 10: digits; // 默认精度为10</div><div class="line">	return this.toFixed(digits) === number.toFixed(digits);</div><div class="line">&#125;</div><div class="line"></div><div class="line">(1.0-0.7).isEqual(0.3); // return true</div></pre></td></tr></table></figure>
       
 
       
@@ -276,7 +245,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/07/hello Express/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/26/求职前端 张振东--个人简历/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -290,17 +259,8 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/06/12/mongodb/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/18/什么是HTTP ?/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/08/24/使用  nmap 扫描/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
@@ -407,6 +367,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

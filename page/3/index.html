@@ -151,6 +151,57 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-React  第七天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    React     第七天</p>
+<h4 id="React核心-start-props-lifecycle-Compoment"><a href="#React核心-start-props-lifecycle-Compoment" class="headerlink" title="React核心 start,props,lifecycle,Compoment"></a>React核心 <strong>start,props,lifecycle,Compoment</strong></h4><p><strong>props</strong></p>
+<p> 组件之间数据传递 只能父级往子级传送</p>
+<p>使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">this.props //拿到父级传过来的数据</div><div class="line">this.props.xxx //根据对象名来获取数据</div></pre></td></tr></table></figure>
+<p> 设置默认属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">App.defaultProps = &#123;</div><div class="line">    bg: &apos;#0f0&apos;,</div><div class="line">    color: &apos;red&apos;,</div><div class="line">    pad: 80</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>类型检查 <strong>PropTypes</strong></p>
+<p> 需要导入<code>PropTypes</code> 没有导入可以写成<code>React.PropTypes.xxx</code></p>
+<p>通过指定 <code>propTypes</code> 可以校验props属性值的类型，校验可提升开发者体验，用于约定统一的接口规范</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import React, &#123;Component,PropTypes&#125; from &apos;react&apos;;</div><div class="line"></div><div class="line">App.propTypes=&#123;</div><div class="line">    bg:PropTypes.string,</div><div class="line">    pad:PropTypes.number</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用<code>...</code>用展开对象来代替普通赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Card  title=&apos;第三天的标题&apos; date=&apos;2017.3.30&apos; index=&#123;3&#125;/&gt;</div><div class="line">               &#123;data.map((item) =&gt; </div><div class="line">                            &lt; Card &#123;...item&#125;/&gt; </div><div class="line">               )&#125;</div></pre></td></tr></table></figure>
+<p><strong>Chidren</strong></p>
+<p><strong>AJAX</strong></p>
+<p>原生请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var xml = new XMLHttpRequest();</div><div class="line">   //</div><div class="line">   xml.onreadystatechange = function () &#123;</div><div class="line">       if (xml.readyState == 4 &amp;&amp; xml.status == 200) &#123;</div><div class="line">           console.log(xml.responseText);</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   xml.open(&quot;GET&quot;, &quot;https://cnodejs.org/api/v1/topics&quot;,true);</div><div class="line">   //limit=2 限制传回数据</div><div class="line">   xml.send();</div></pre></td></tr></table></figure>
+<p><strong>JSON</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var  jsonobj=JSON.stringify(obj);  // 对象转换过成JSON对象</div><div class="line">var obj=JSON.parse(jsonStr); // 将JSON对象解析成对象</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/10/React  第七天/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-React 第 九 天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -777,41 +828,6 @@
 
 
   
-    <article id="post-解决 端口被占" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>解决 端口被占</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lsof -i:80880</div><div class="line">kill: -9 80808</div></pre></td></tr></table></figure>
-<p>​    </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/10/解决 端口被占/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -906,6 +922,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

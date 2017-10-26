@@ -160,7 +160,7 @@
       
         <h1 id="vue的component-学习"><a href="#vue的component-学习" class="headerlink" title="vue的component 学习"></a>vue的component 学习</h1><p>Vue的component 组件 和react 一样是 是核心 所以我单独拿出来写个笔记 ✧(≖ ◡ ≖✿)嘿嘿</p>
 <p><strong>全局组件</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'zzd'</span>,&#123;</div><div class="line">           <span class="attr">template</span>: <span class="string">`&lt;div&gt;hello  这是全局zzd 标记 你好 我是&lt;em&gt;ZZ:D&lt;/em&gt;&lt;/div&gt;`</span></div><div class="line">       &#125;)</div><div class="line"></div><div class="line"></div><div class="line">&lt;zzd&gt;<span class="xml"><span class="tag">&lt;/<span class="name">zzd</span>&gt;</span></span> <span class="comment">// html</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'zzd'</span>,&#123;</div><div class="line">           <span class="attr">template</span>: <span class="string">`&lt;div&gt;hello  这是全局zzd 标记 你好 我是&lt;em&gt;ZZ:D&lt;/em&gt;&lt;/div&gt;`</span></div><div class="line">       &#125;)</div><div class="line"></div><div class="line"></div><div class="line">&lt;zzd&gt;&lt;/zzd&gt; <span class="comment">// html</span></div></pre></td></tr></table></figure>
 <p><strong>局部组件</strong> </p>
 <ul>
 <li>只能在app 的作用域使用 ,在app 外 无效</li>
@@ -287,7 +287,7 @@
     </a>
   
   
-    <a href="/2017/06/22/# vue 的全局 api /" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/06/22/# vue 的全局 api/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
@@ -394,6 +394,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
